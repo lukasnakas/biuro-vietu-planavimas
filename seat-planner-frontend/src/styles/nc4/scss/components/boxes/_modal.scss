@@ -1,0 +1,209 @@
+
+
+.modal {
+    display: none;
+    overflow: hidden;
+    position: fixed;
+    content: '';
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+
+    outline: 0;
+    background-color: rgba($primary-neutral, .5);
+
+    justify-content: center;
+    align-items: center;
+    z-index: $zindex-modal;
+
+    &.in {
+        display: flex;
+    }
+
+    &.fade {
+        opacity: 0;
+
+        transition: opacity .15s linear;
+        transition-delay: .05s;
+        transition-duration: .05s;
+
+        &.in {
+            opacity: 1;
+        }
+    }
+
+    &.modal-help,
+    &.modal-info,
+    &.modal-error,
+    &.modal-warning,
+    &.modal-success {
+        .modal-dialog {
+            padding-left: 162px;
+
+            @media(min-width: 600px) {
+                &.modal-sm {
+                    padding-left: 60px;
+                    padding-top: 192px;
+
+                    .modal-body {
+                        &::before {
+                            top: 60px;
+                            left: calc(50% - 36px);
+                        }
+                    }
+
+                    .close {
+                        top: -164px;
+                    }
+                }
+            }
+
+            @media(max-width: 600px) {
+                padding-top: 192px;
+                padding-left: 60px;
+            }
+        }
+
+        .modal-body {
+            &::before {
+                display: block;
+                position: absolute;
+                content: '';
+                width: 72px;
+                height: 72px;
+                top: calc(50% - 36px);
+                left: 60px;
+
+                background: transparent url('#{$icons-path}/informative-filled-icons/50_informative_icons.svg') 0 0 no-repeat;
+                background-size: 388px 72px;
+
+                @media(max-width: 600px) {
+                    top: 60px;
+                    left: calc(50% - 36px);
+                }
+            }
+        }
+
+        @media(max-width: 600px) {
+            .close {
+                top: -164px;
+            }
+        }
+    }
+
+    &.modal-help {
+        .modal-body {
+            &::before {
+                background-position: -316px 0;
+            }
+        }
+    }
+
+    &.modal-info {
+        .modal-body {
+            &::before {
+                background-position: -237px 0;
+            }
+        }
+    }
+
+    &.modal-error {
+        .modal-body {
+            &::before {
+                background-position: -79px 0;
+            }
+        }
+    }
+
+    &.modal-warning {
+        .modal-body {
+            &::before {
+                background-position: -158px 0;
+            }
+        }
+    }
+
+    &.modal-success {
+        .modal-body {
+            &::before {
+                background-position: 0 0;
+            }
+        }
+    }
+
+    // .modal-dialog {}
+    // .modal-content {}
+}
+
+.modal-dialog {
+    position: relative;
+    width: 600px;
+    max-width: calc(100% - 60px);
+    max-height: calc(100% - 60px);
+    padding: 60px 60px 30px;
+
+    border-radius: 20px;
+    background-color: $neutral-05;
+    box-shadow: shadow(50) rgba($blue-90, .2);
+
+    &.modal-lg {
+        width: 720px;
+    }
+
+    &.modal-sm {
+        width: 480px;
+    }
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+    padding: 0 0 30px;
+}
+
+.modal-header {
+    position: relative;
+
+    .close {
+        position: absolute;
+        top: -32px;
+        right: -34px;
+    }
+
+    .modal-title {
+        margin-bottom: 0;
+
+        color: $primary-neutral;
+        line-height: 24px;
+        font: {
+            size: 16px;
+            weight: $bold;
+        }
+
+        h1, h2, h3, h4, h5, h6, p { margin-bottom: 0; }
+    }
+}
+
+.modal-body {
+    p, div {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.modal-footer {
+    @include clearfix();
+    padding-bottom: 24px;
+
+    .float-right {
+        text-align: right;
+    }
+
+    .btn {
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

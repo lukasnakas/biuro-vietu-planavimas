@@ -1,0 +1,259 @@
+
+// NC v4.0 variables
+//
+//=== Table of Contents:
+//
+//  1. Imports
+//  2. Color palette
+//  3. Path variables
+//  4. Typography
+//  5. Responsivness
+//  6. Grids
+//  7. Z-index variable
+//  8. Borders
+//  9. Image thumbnails
+// 10.
+// 11. 
+//
+
+
+
+//=== 1. Imports
+//# Default Settings
+@import 'config';
+
+//# Project Settings, modify the default settings
+@import 'custom-settings';
+
+//# Functions and Mixins
+@import '../utilities/functions';
+@import '../utilities/mixins'; 
+
+
+//=== 2. Color palette
+//# 
+$white: #ffffff;
+$black: #000000;
+
+
+//# Main colors palette
+//### Neutral palette
+$primary-neutral: #252626;
+
+$neutral-90: $primary-neutral;
+$neutral-80: #6a6c6d;
+$neutral-70: #959799;
+$neutral-60: #aaacae;
+$neutral-50: #c1c3c5;
+$neutral-40: #d9dcde; 
+$neutral-30: #e3e6e8;
+$neutral-20: #f0f2f5;
+$neutral-10: #f7f9fa;
+$neutral-05: $white;
+
+
+//### Blue palette
+$primary-blue: #007aca;
+
+$blue-90: #163e59;
+$blue-80: #0060a1;
+$blue-70: #0071bd;
+$blue-60: $blue-90;
+$blue-50: #0087e0;
+$blue-40: #1c98eb;
+$blue-30: #5bb4f0;
+$blue-20: #96d2fa;
+$blue-10: #dceefa;
+$blue-05: #ebf7ff;
+
+
+//### Green palette
+$primary-green: #4d8400;
+
+$green-90: #305200;
+$green-80: #3b6600;
+$green-70: $primary-green;
+$green-60: #68a611;
+$green-50: #7fb435;
+$green-40: #99c35d;
+$green-30: #b0d182;
+$green-20: #cfe5ae;
+$green-10: #e4f0d3;
+$green-05: #f4faeb;
+
+
+//### Red palette
+$primary-red: #D93644;
+
+$red-90: #a6000e;
+$red-80: #d11525;
+$red-70: $primary-red;
+$red-60: #e04c59;
+$red-50: #f2616d;
+$red-40: #f0828c;
+$red-30: #feb0b7;
+$red-20: #ffd4d8;
+$red-10: #ffe5e7;
+$red-05: #fff2f3;
+
+
+//### Orange palette
+$primary-orange: #b35300;
+
+$orange-90: $primary-orange;
+$orange-80: #d76500;
+$orange-70: #f28d00;
+$orange-60: #ffaa33;
+$orange-50: #ffc46f;
+$orange-40: #eecf8b;
+$orange-30: #ffdaa4;
+$orange-20: #ffeacc;
+$orange-10: #fff4e5;
+$orange-05: #fffcf5;
+
+
+//# Maps
+//### Shadow map
+$shadow-map: (
+    50: (
+        distance: 15px,
+        size: 40px
+    ),
+    40: (
+        distance: 10px,
+        size: 15px
+    ),
+    30: (
+        distance: 5px,
+        size: 10px
+    ),
+    20: (
+        distance: 2px,
+        size: 4px
+    ),
+    10: (
+        distance: 1px,
+        size: 1px
+    )
+);
+
+
+
+//=== 3. Path variables
+$image-path: '../img' !default;
+$font-path: '../fonts' !default;
+$icons-path: '#{$image-path}/vismaicons' !default;
+$tabs-graph-path: $image-path + '/tabs' !default;
+
+
+
+//=== 4. Typography
+$font-size-base: 14px;
+$line-height-base: 145%;
+
+$font-weight-base: normal;
+$font-family-base: 'OpenSansFallback', 'Open Sans', sans-serif;
+$font-family-secondary: 'PFBeauSans', sans-serif;
+
+//### Main font-size
+// font-weight
+$bold: 700;
+$semibold: 600;
+$normal: 400;
+$thin: 200;
+
+// font-size/line-height font-family
+$font-xl: 24px/30px $font-family-base;
+$font-lg: 20px/30px $font-family-base;
+$font-md: 16px/24px $font-family-base;
+$font-sm: 14px/18px $font-family-base;
+$font-xs: 12px/14px $font-family-base;
+
+
+
+//=== 5. Responsivness
+// main screen sizes
+$screen-xxl-min: 1680px;
+$screen-xl-min: 1440px;
+$screen-lg-min: 1280px;
+$screen-md-min: 992px;
+$screen-sm-min: 769px;
+$screen-xs-min: 550px;
+ 
+$screen-xxl-max: 1679px;
+$screen-xl-max: 1439px;
+$screen-lg-max: 1279px;
+$screen-md-max: 991px;
+$screen-sm-max: 768px;
+$screen-xs-max: 549px;
+
+
+
+//=== 6. Grids
+// Grid breakpoints
+$grid-breakpoints: (
+    xxs: 0,
+    xs: $screen-xs-min,
+    sm: $screen-sm-min,
+    md: $screen-md-min,
+    lg: $screen-lg-min,
+    xl: $screen-xl-min,
+    xxl: $screen-xxl-min
+) !default;
+
+// Grid containers
+$container-max-widths: (
+    xxs: 100%, 
+    xs: 90%,
+    sm: 90%,
+    md: 90%,
+    lg: $screen-lg-min - 30px,
+    xl: $screen-xl-min - 30px,
+    xxl: $screen-xxl-min - 30px 
+    ) !default;
+
+// Grid columns
+// Set the number of columns and specify the width of the gutters.
+$grid-columns:                12 !default;
+$grid-gutter-width:           30px !default;
+
+// Grid options - Quickly modify global styling by enabling or disabling optional features.
+$enable-grid-classes:       true !default;
+
+
+
+//=== 7. Z-index variable
+$zindex-button-active:        5;
+$zindex-button-focus:        10;
+$zindex-navbar-header:      900;
+$zindex-dropdown-backdrop:  990;
+$zindex-dropdown:          1000;
+$zindex-navbar:            1000;
+$zindex-navbar-dropdown:   1010;
+$zindex-fixed:             1030;
+$zindex-sticky:            1030;
+$zindex-modal-backdrop:    1040;
+$zindex-modal:             1050;
+$zindex-popover:           1060;
+$zindex-tooltip:           1070;
+
+
+
+//=== 8. Borders
+$border-color: $neutral-50 !default;
+$border-width: 1px !default;
+
+$border-radius-5: 5px !default; 
+$border-radius-10: 10px;  
+$border-radius-20: 20px; 
+$border-radius: $border-radius-5 !default; 
+
+
+
+//=== 9. Image thumbnails
+$thumbnail-padding: .25rem !default;
+$thumbnail-bg: $white !default;
+$thumbnail-border-width: $border-width !default;
+$thumbnail-border-color: $border-color !default;
+$thumbnail-border-radius: $border-radius !default;
+// $thumbnail-box-shadow: 0 1px 2px rgba($black, .075) !default;

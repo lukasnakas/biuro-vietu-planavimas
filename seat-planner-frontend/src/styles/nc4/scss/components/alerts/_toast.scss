@@ -1,0 +1,57 @@
+// Imports
+@import '../../settings/variables';
+
+//# Toasts
+.toast {
+    background: $white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $blue-20;
+    border-radius: 5px;
+    box-shadow: shadow(20) rgba($blue-90, 0.12);
+    padding: 15px 35px 15px 50px;
+    margin-bottom: 25px;
+    line-height: 1.6; 
+    max-width: 450px;
+    display: block;
+    position: relative;
+
+    &:before {
+        content:'';
+        width: 16px;
+        height: 16px;
+        display: block;
+        position: absolute;
+        top: calc(50% - 8px);
+        left: 20px;
+        background: url('#{$icons-path}/informative-filled-icons/16_informative_icons.svg') transparent -63px 0px no-repeat;
+        }
+
+    .vismaicon-filled { display: none; }
+
+    &.toast-success {
+        border-color: $green-30;
+
+        &:before { background-position: 0 0; }
+        }
+
+    &.toast-danger {
+        border-color: $red-30;
+
+        &:before { background-position: -21px 0; }
+        }
+
+    &.toast-warning {
+        border-color: $orange-50;
+        
+        &:before { background-position: -42px 0; }
+        }
+
+    //Close button 
+    .close {
+        position: absolute;
+        top: calc(50% - 6px);
+        right: 17px;
+        }
+    }
+

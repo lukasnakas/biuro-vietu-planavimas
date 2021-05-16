@@ -1,0 +1,43 @@
+// Button Primary Theme
+.btn {
+  &.btn-primary {
+    color: $neutral-05;
+
+    border-color: $primary-blue;
+    background-color: $primary-blue;
+    box-shadow: shadow(20) rgba($green-80, 0.2);
+
+    //### '.btn-primary' hover state
+    &:hover {
+      border-color: $blue-60;
+      background-color: $blue-60;
+    }
+
+    //### '.btn-primary' focus state
+    &:focus {
+      border-color: $blue-50;
+      box-shadow: inset 0 0 0 1px $blue-50, inset 0 0 0 2px $neutral-05,
+        shadow(20) rgba($blue-80, 0.2);
+    }
+
+    //### '.btn-primary' active/pressed and active/selected state
+    &:active,
+    &.active {
+      border-color: $blue-80;
+      background-color: $blue-80;
+      box-shadow: none;
+    }
+
+    //### '.btn-primary' disabled state
+    &:disabled,
+    &.disabled,
+    :disabled &,
+    .disabled & {
+      color: $blue-20;
+
+      border-color: $blue-40;
+      background-color: $blue-40;
+      box-shadow: none;
+    }
+  }
+}

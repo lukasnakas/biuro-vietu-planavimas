@@ -1,0 +1,106 @@
+
+// Top navigation - default styles - BLUE VERSION
+
+.navbar {
+    &.navbar-default {
+        background: $blue-80;
+        background: linear-gradient(to right,$blue-80 0%, $primary-blue 100%);
+        box-shadow: 0 0 10px rgba(9, 116, 179, 0.5);
+
+        .dropdown-toggle {
+            .caret { background-position: -53px -27px; }
+        }
+    }
+}
+
+/* Product dropdown area */
+.navbar-default {
+    .navbar-header {
+        .navbar-brand {
+            > a,
+            > .dropdown-toggle {
+                border-right: 1px solid rgba($white, 0.1);
+                color: $white;
+               
+                &:hover { background-color: rgba($white, 0.1); }
+            }
+        }
+    }
+}
+
+/* navbar */
+.navbar-default {
+    .navbar-collapse {
+        .nav {
+            li {
+                a {
+                    color: $primary-neutral;
+
+                    &:hover{
+                        background: rgba($white, 0.1);
+                    }
+                }
+            }
+        }
+
+        .first-level.navbar-right .user-dropdown {
+            > .dropdown-toggle { border-left: 1px solid rgba($white, 0.1); }
+
+            &.icon {
+                &.open {
+                    .dropdown-toggle {
+                        .vismaicon::before { background-position: -88px 0; }
+                    }
+                }
+            }
+        }
+
+        .first-level {
+            > li > a { color: $white; }
+
+            > .active {
+                > a { background-color: rgba($blue-90, 0.5); }
+            }
+
+            .menudrop {
+                > .dropdown-toggle {
+                    .icon-align-justify {
+                        background: $white;
+
+                        &::before, &::after { background: $white; }
+                    }
+                }
+
+                &.open {
+                    .dropdown-toggle {
+                        background-color: $white;
+
+                        .icon-align-justify {
+                            background-color: $primary-neutral;
+
+                            &::before, &::after{ background-color: $primary-neutral; }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* Mobile */
+.navbar-default {
+    &.navbar.is-mobile {
+        .navbar-collapse{
+            .first-level {
+                .menudrop {
+                    .icon-align-justify {
+                        &,
+                        &::before, 
+                        &::after { background: $white; }
+                    }
+                }
+            }
+        }
+    }
+}

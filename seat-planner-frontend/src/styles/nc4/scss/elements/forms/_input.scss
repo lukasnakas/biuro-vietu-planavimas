@@ -1,0 +1,357 @@
+
+//# General input styles
+
+// Input placeholder style
+::placeholder,
+::-webkit-input-placeholder,
+:-moz-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder {
+    color: $neutral-70;
+    font-style: italic;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+}
+
+// Base 'input' tag style
+input {
+    &, &.form-control {
+        box-sizing: border-box;
+        height: 30px;
+        margin-right: 6px;
+    
+        font: $font-sm;
+        line-height: 24px;
+
+        //### input base, focus state
+        &.focus, &:focus {
+            outline: 0;
+    
+            border-color: $blue-50;
+            box-shadow: inset 0 0 0 1px $blue-50, shadow(20) rgba($blue-50, 0.15);
+        }
+
+        //### input base, disabled state
+        .disabled &, :disabled &,
+        &.disabled, &:disabled {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        //### 'default' input style
+        &[type="text"],
+        &[type="password"],
+        &[type="datetime"],
+        &[type="datetime-local"],
+        &[type="date"],
+        &[type="month"],
+        &[type="time"],
+        &[type="week"],
+        &[type="number"],
+        &[type="email"],
+        &[type="url"],
+        &[type="search"],
+        &[type="tel"],
+        &[type="color"] {
+            padding: 4px 12px;
+    
+            color: $primary-neutral;
+    
+            border-radius: 0;
+            border: 1px solid $neutral-50;
+            background-color: $neutral-05;
+        
+            -webkit-appearance: none;
+            -moz-appearance: textfield;
+    
+            &.hover, &:hover {
+                border-color: $blue-20;
+                box-shadow: shadow(20) rgba($primary-blue, 0.20);
+            }
+        
+            &.focus, &:focus {
+                border-color: $blue-50;
+                box-shadow: inset 0 0 0 1px $blue-50, shadow(20) rgba($blue-50, 0.15);
+            }
+    
+            .disabled &, :disabled &,
+            &.disabled, &:disabled {
+                color: $neutral-60;
+        
+                border-color: $neutral-40;
+                box-shadow: none;
+        
+                &::placeholder,
+                &::-webkit-input-placeholder,
+                &:-moz-placeholder,
+                &::-moz-placeholder,
+                &:-ms-input-placeholder {
+                    color: $neutral-60;
+                }
+            }
+        }
+
+        // the clear "X" button for text inputs on IE/Edge.
+        &:-ms-clear { display:none; }
+    
+        // validation state
+        .has-error &, &.has-error {
+            &, &.hover, &:hover, &.focus, &:focus {
+                color: $red-80;
+    
+                border-color: $primary-red;
+                box-shadow: none;
+            }
+    
+            &.focus, &:focus {
+                box-shadow: inset 0 0 0 1px $primary-red;
+            }
+        }
+    
+        // read only state for input
+        &[readonly] {
+            cursor: default;
+    
+            &, &.hover, &:hover,
+            &.focus, &:focus,
+            .disabled &, :disabled &,
+            &.disabled, &:disabled {
+                cursor: default;
+    
+                outline: 0;
+                border: 0;
+                background-color: transparent;
+                box-shadow: none;
+            }
+        }
+        
+        // large inputs
+        &.input-lg { height: 48px; }
+    
+        // small inputs
+        &.input-sm { 
+            height: 24px; 
+            padding-bottom: 2px;
+            padding-top: 2px;
+        }
+
+        // hide controls for inputs type numbers
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            margin: 0;
+            -webkit-appearance: none;
+        }
+    
+        //
+        &[type="number"] {
+            &.right-direction {
+                &, .form-group & {
+                    padding: 7px 10px 5px 0;
+                }
+            }
+    
+            &.spinner {
+                -moz-appearance: number-input;
+            }
+        }
+    
+        //
+        &[type="number"],
+        &[type="datetime"],
+        &[type="datetime-local"],
+        &[type="date"],
+        &[type="month"],
+        &[type="week"],
+        &[type="time"] {
+            &.spinner {
+                &::-webkit-inner-spin-button,
+                &::-webkit-outer-spin-button {
+                    -webkit-appearance: inner-spin-button;
+                }
+            }
+        }
+    
+        // upload input type / file type
+        &[type="file"] {
+            padding-top: 3px;
+            padding-left: 3px;
+        }
+    }
+}
+
+// Base 'textarea' tag style
+textarea {
+    &, &.form-control {
+        height: initial;
+        margin-right: 6px;
+        padding: 4px 12px;
+
+        color: $primary-neutral;
+        font: $font-sm;
+        line-height: 24px;
+
+        border-radius: 0;
+        border: 1px solid $neutral-50;
+        background-color: $neutral-05;
+        box-sizing: border-box;
+
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+
+        //### base textarea, hover state
+        &.hover, &:hover {
+            border-color: $blue-20;
+            box-shadow: shadow(20) rgba($primary-blue, 0.20);
+        }
+
+        //### base textarea, focus state
+        &.focus, &:focus {
+            outline: 0;
+            border-color: $blue-50;
+            box-shadow: inset 0 0 0 1px $blue-50, shadow(20) rgba($blue-50, 0.15);
+        }
+
+        //### base textarea, disabled state
+        .disabled &, :disabled &,
+        &.disabled, &:disabled {
+            cursor: default;
+            pointer-events: none;
+
+            color: $neutral-60;
+
+            border-color: $neutral-40;
+            box-shadow: none;
+        }
+
+        //### validation state
+        .has-error &, &.has-error {
+            &, &.hover, &:hover, &.focus, &:focus {
+                color: $red-80;
+    
+                border-color: $primary-red;
+                box-shadow: none;
+            }
+    
+            &.focus, &:focus {
+                box-shadow: inset 0 0 0 1px $primary-red;
+            }
+        }
+    }
+}
+
+// Base 'select' tag style
+select {
+    &, &.form-control {
+        cursor: pointer;
+        min-width: 160px;
+        max-width: 100%;
+        height: 30px;
+        padding: 3px 18px 3px 12px;
+            
+        color: $primary-neutral;
+    
+        font: {
+            size: 14px;
+            weight: $normal;
+        }
+        line-height: 18px;
+        text: {
+            align: left;
+            overflow: ellipsis;
+            shadow: none;
+        }
+        vertical-align: middle;
+        white-space: nowrap;
+
+        border: 1px solid $neutral-50;
+        border-radius: $border-radius;
+        background: {
+            color: $neutral-05;
+            image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMCIgdmlld0JveD0iMCAwIDEyIDEwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDojZmZmO29wYWNpdHk6MDt9LmJ7ZmlsbDojMjUyNjI2O30uY3tmaWx0ZXI6dXJsKCNhKTt9PC9zdHlsZT48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIxLjQ5NyIgd2lkdGg9IjEyIiBoZWlnaHQ9IjcuOTYiIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PGZlT2Zmc2V0IGR5PSIxIiBpbnB1dD0iU291cmNlQWxwaGEiLz48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIwLjUiIHJlc3VsdD0iYiIvPjxmZUZsb29kIGZsb29kLWNvbG9yPSIjMDAxZjMzIiBmbG9vZC1vcGFjaXR5PSIwLjIiLz48ZmVDb21wb3NpdGUgb3BlcmF0b3I9ImluIiBpbjI9ImIiLz48ZmVDb21wb3NpdGUgaW49IlNvdXJjZUdyYXBoaWMiLz48L2ZpbHRlcj48L2RlZnM+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMS40OTQpIj48cmVjdCBjbGFzcz0iYSIgd2lkdGg9IjkiIGhlaWdodD0iOSIvPjxnIGNsYXNzPSJjIiB0cmFuc2Zvcm09Im1hdHJpeCgxLCAwLCAwLCAxLCAtMS40OSwgMCkiPjxwYXRoIGNsYXNzPSJiIiBkPSJNNC41LDQuOTU4YS41LjUsMCwwLDEtLjM5NC0uMTQ1TC4xNDYuODUzQS41LjUsMCwwLDEsLjg1My4xNDZMNC41LDMuNzkyLDguMTQ2LjE0N2EuNS41LDAsMCwxLC43MDcuNzA3bC0zLjk2LDMuOTZhLjUuNSwwLDAsMS0uMzU0LjE0NloiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEuNSAyKSIvPjwvZz48L2c+PC9zdmc+");
+            repeat: no-repeat;
+            size: 12px 10px;
+            position: right 6px top 10px;
+        }
+        box-shadow: shadow(20) rgba($blue-90, 0.12);
+
+        appearance: none;
+
+        // hide arrow in IE/Edge
+        &::-ms-expand {
+            display: none;
+        }
+    
+        //### cta button hover state
+        &:hover {
+            border-color: $blue-20;
+            background-color: $blue-10;
+            box-shadow: shadow(20) rgba($blue-50, 0.15);
+        }
+
+        //### cta button focus state
+        &:focus:not(:active) {
+            outline: 0;
+            border-color: $blue-50;
+            box-shadow: inset 0 0 0 1px $blue-50, shadow(20) rgba($blue-50, 0.15);
+        }
+
+        //### cta button active/pressed state
+        &:active {
+            outline: 0;
+            border-color: $neutral-50;
+            background-color: $neutral-40;
+            box-shadow: none;
+        }
+
+        //### cta button disabled state
+        &:disabled, &.disabled,
+        :disabled &, .disabled & {
+            pointer-events: none;
+            color: $neutral-60;
+
+            border-color: $neutral-40;
+            background-color: $neutral-05;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMCIgdmlld0JveD0iMCAwIDEyIDEwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDojZmZmO29wYWNpdHk6MDt9LmJ7ZmlsbDojOTU5Nzk5O30uY3tmaWx0ZXI6dXJsKCNhKTt9PC9zdHlsZT48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIxLjQ5NyIgd2lkdGg9IjEyIiBoZWlnaHQ9IjcuOTYiIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PGZlT2Zmc2V0IGR5PSIxIiBpbnB1dD0iU291cmNlQWxwaGEiLz48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIwLjUiIHJlc3VsdD0iYiIvPjxmZUZsb29kIGZsb29kLWNvbG9yPSIjMDAxZjMzIiBmbG9vZC1vcGFjaXR5PSIwLjIiLz48ZmVDb21wb3NpdGUgb3BlcmF0b3I9ImluIiBpbjI9ImIiLz48ZmVDb21wb3NpdGUgaW49IlNvdXJjZUdyYXBoaWMiLz48L2ZpbHRlcj48L2RlZnM+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMS40OTQpIj48cmVjdCBjbGFzcz0iYSIgd2lkdGg9IjkiIGhlaWdodD0iOSIvPjxnIGNsYXNzPSJjIiB0cmFuc2Zvcm09Im1hdHJpeCgxLCAwLCAwLCAxLCAtMS40OSwgMCkiPjxwYXRoIGNsYXNzPSJiIiBkPSJNNC41LDQuOTU4YS41LjUsMCwwLDEtLjM5NC0uMTQ1TC4xNDYuODUzQS41LjUsMCwwLDEsLjg1My4xNDZMNC41LDMuNzkyLDguMTQ2LjE0N2EuNS41LDAsMCwxLC43MDcuNzA3bC0zLjk2LDMuOTZhLjUuNSwwLDAsMS0uMzU0LjE0NloiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEuNSAyKSIvPjwvZz48L2c+PC9zdmc+");
+            box-shadow: none;
+        }
+
+        > option {
+            background-color: $neutral-05;
+
+            &:hover {
+                background-color: $blue-10;
+            }
+        }
+
+        // large inputs
+        &.input-lg {
+            height: 48px;
+            background-position: right 6px top 18px;
+        }
+
+        .has-error &, &.has-error {
+            border-color: $primary-red;
+            box-shadow: none;
+
+            &:focus:not(:active) {
+                border-color: $primary-red;
+                box-shadow: inset 0 0 0 1px $primary-red;
+            }
+        }
+    }
+}
+
+// full width for inputs and select when in grid
+input, textarea, select {
+    &, &.form-control {
+        [class*="col-xs-"] > &,
+        [class*="col-sm-"] > &,
+        [class*="col-md-"] > &,
+        [class*="col-lg-"] > & {
+            width: 100%;
+        }
+    }
+}

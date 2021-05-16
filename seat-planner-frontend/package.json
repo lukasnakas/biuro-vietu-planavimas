@@ -1,0 +1,95 @@
+{
+  "name": "seat-planner-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.5.3",
+    "env-cmd": "^10.1.0",
+    "multiselect-react-dropdown": "^1.6.11",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.4.3",
+    "react-datepicker": "^3.8.0",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
+    "react-resize-detector": "^6.6.5",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "react-spinners": "^0.10.6",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "build-react": "react-scripts build",
+    "build-react:dev": "env-cmd -f .env.development react-scripts build",
+    "build-react:test": "env-cmd -f .env.awsTest react-scripts build",
+    "build-react:acceptance": "env-cmd -f .env.awsAcceptance react-scripts build",
+    "build-docker:dev": "docker build . --build-arg env=development -t mandate-web:dev",
+    "build-docker:test": "docker build . --build-arg env=awsTest -t mandate-web:${npm_package_version}-test",
+    "build-docker:acceptance": "docker build . --build-arg env=awsAcceptance -t mandate-web:${npm_package_version}-acpt",
+    "build-docker:prod": "docker build . --build-arg env=awsProd -t mandate-web:${npm_package_version}-prod",
+    "fix": "npm run format && eslint --fix src/ --ext .js --ignore-pattern node-install",
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\"",
+    "server": "node -r esm src/server-mock/index.js",
+    "server-local": "node -r esm src/server-mock/index.js --local",
+    "start": "set HTTPS=true&&react-scripts start",
+    "test": "npm run format && react-scripts test --watchAll=true",
+    "test:update": "npm run format && react-scripts test -u --watchAll=true",
+    "test:coverage": "npm run format && react-scripts test --coverage --watchAll=false"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/reportWebVitals.js"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "prettier"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "auto"
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "**/node_modules/"
+  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "cors": "^2.8.5",
+    "enzyme": "^3.11.0",
+    "eslint": "^7.23.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.23.1",
+    "node-sass": "^5.0.0",
+    "prettier": "^2.2.1"
+  }
+}

@@ -1,0 +1,74 @@
+
+/*
+// Nordic Cool v4.0
+*/
+
+
+// Core variables and mixins
+//=== Variables
+@import 'settings/variables';
+
+
+// Reset and dependencies
+//=== Resets
+@import 'base/reboot.scss';
+
+
+// Core/Base Style
+@import 'base/local-fonts.scss';
+@import 'base/typography.scss';
+@import 'base/grid.scss';
+
+
+// Elements/Simple Components
+//=== Generic elements/components
+@import 'elements/buttons.scss';
+@import 'elements/forms.scss';
+@import 'elements/images.scss';
+@import 'elements/table.scss';
+
+//=== Basic elements/components
+@import 'elements/badges.scss';
+@import 'elements/icons.scss';
+
+
+// Components
+//=== Containers
+@import 'components/boxes.scss';
+@import 'components/list-groups.scss';
+@import 'components/tabs.scss';
+
+//=== Menu-based components
+@import 'components/breadcrumbs';
+@import 'components/navigation.scss'; 
+@import 'components/wizard.scss';
+@import 'components/vertical-nav.scss';
+
+//=== Other Components
+@import 'components/datepicker';
+@import 'components/pagination.scss';
+
+@import 'components/alerts.scss'; 
+@import 'components/tooltips.scss';
+@import 'components/progress-indicators.scss';
+@import 'components/stepper.scss';
+
+
+// Modules
+//=== Login Page
+
+//=== Error pages
+
+
+// Utility/Helper Classes
+@import 'base/helper-classes.scss';
+
+
+// Others
+//=== Print Reset
+@import 'base/print.scss';
+
+
+html {
+    background-color: $neutral-20;
+}

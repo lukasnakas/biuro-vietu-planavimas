@@ -1,0 +1,77 @@
+// Imports
+@import '../../settings/variables';
+
+//# Alert
+.alert {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 30px 50px 30px 70px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    position: relative;
+
+    border-color: $blue-20;
+    background: $blue-05;
+    color: $blue-70;
+    box-shadow: shadow(30) rgba($blue-50, 0.12);
+
+    &:before {
+        content:'';
+        width: 24px;
+        height: 24px;
+        display: block;
+        position: absolute;
+        top: calc(50% - 12px);
+        left: 30px;
+        background: url('#{$icons-path}/informative-filled-icons/24_informative_icons.svg') transparent -87px 0px no-repeat;
+        }
+
+    .vismaicon-filled { display: none; }
+
+    .btn,
+    > p:last-child { margin-bottom: 0; }
+    
+    &.alert-success { 
+        border-color: $green-30;
+        background: $green-05;
+        color: $green-80;
+        box-shadow: shadow(30) rgba($primary-green, 0.12);
+
+        &:before { background-position: 0 0; }
+        }
+    
+    &.alert-warning { 
+        border-color: $orange-50;
+        background: $orange-10;
+        color: $primary-orange;
+        box-shadow: shadow(30) rgba($orange-70, 0.12);
+
+        &:before { background-position: -58px 0px; }
+        }
+    
+    &.alert-danger { 
+        border-color: $red-30;
+        background: $red-05;
+        color: $red-80;
+        box-shadow: shadow(30) rgba($primary-red, 0.12);
+
+        &:before { background-position: -29px 0px; }
+        }
+
+
+    // Small
+    &.alert-sm {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        }
+
+
+    //Close button 
+    .close {
+        position: absolute;
+        top: calc(50% - 6px);
+        right: 27px;
+        }
+    }
+

@@ -1,0 +1,52 @@
+
+// Imports
+@import '../settings/variables';
+
+// Open Sans
+// 400 - normal
+@font-face {
+    font-family: "OpenSansFallback";
+    src: url('#{$font-path}/OpenSans-Regular.woff2') format('woff2'),
+        url('#{$font-path}/OpenSans-Regular.woff') format('woff');
+    font-style: normal;
+    font-weight: normal;
+    }
+
+// 600 - semibold
+@font-face {
+    font-family: "OpenSansFallback";
+    font-style: normal;
+    font-weight: 600;
+    src: url('#{$font-path}/OpenSans-SemiBold.woff2') format('woff2'),
+        url('#{$font-path}/OpenSans-SemiBold.woff') format('woff');
+}
+
+// 800 - extrabold
+@font-face {
+    font-family: "OpenSansFallback";
+    font-style: normal;
+    font-weight: 800;
+    src: url('#{$font-path}/OpenSans-Bold.woff2') format('woff2'),
+        url('#{$font-path}/OpenSans-Bold.woff') format('woff');
+}
+
+
+// PF Beau Sans
+// 200 - Thin
+@font-face {
+    font-family: "PFBeauSans";
+    font-style: normal;
+    font-weight: 400;
+    src: url('#{$font-path}/PFBeauSansPro-Thin.woff2') format('woff2'),
+        url('#{$font-path}/PFBeauSansPro-Thin.woff') format('woff');
+}
+
+// 400 - Light
+@font-face {
+    font-family: "PFBeauSans";
+    font-style: normal;
+    font-weight: 400;
+    src: url('#{$font-path}/PFBeauSansPro-Light.woff2') format('woff2'),
+        url('#{$font-path}/PFBeauSansPro-Light.woff') format('woff');
+}
+

@@ -1,0 +1,237 @@
+// Dropdown buttons style declaration
+//# Dropdown/dropup wrapper
+.dropdown,
+.dropup {
+  display: inline-block;
+  position: relative;
+  margin: 0 6px 6px 0;
+
+  &.open {
+    z-index: 2;
+  }
+}
+
+//# Dropdown/dropup the trigger/button style.
+.dropdown-toggle {
+  position: relative;
+  margin: 0;
+  z-index: 1;
+  padding: 5px 30px 5px 15px;
+
+  &.btn-lg {
+    padding-right: 30px;
+
+    &::before {
+      top: 20px;
+    }
+  }
+
+  //## drodown arrow style
+  &::before {
+    display: block;
+    content: "";
+    position: absolute;
+
+    width: 9px;
+    height: 9px;
+    top: 10px;
+    right: 12px;
+
+    background: transparent url("#{$image-path}/arrow-medium.svg") 0 0 no-repeat;
+    background-position: -4px -24px;
+
+    .dropup & {
+      transform: rotate(180deg);
+    }
+  }
+
+  &::after {
+    content: none;
+  }
+
+  .disabled &,
+  :disabled &,
+  &.disabled,
+  &:disabled {
+    &::before {
+      background-position: -24px -24px;
+    }
+  }
+
+  // removing shadow for open dropdown/dropup
+  .open & {
+    box-shadow: none;
+
+    &:focus:not(:active) {
+      box-shadow: inset 0 0 0 1px $blue-50;
+    }
+  }
+
+  // alternative style for the dropdown trigger/button
+  &.btn-primary {
+    &::before {
+      background-position: -44px -24px;
+    }
+
+    &:focus:not(:active) {
+      box-shadow: inset 0 0 0 1px $blue-50, inset 0 0 0 2px $neutral-05;
+    }
+
+    .disabled &,
+    :disabled &,
+    &.disabled,
+    &:disabled {
+      &::before {
+        background-position: -64px -24px;
+      }
+
+      &:focus:not(:active) {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+//#  Dropdown/Dropup content list
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  width: 100%;
+  margin: 0;
+  padding: 11px 0 5px;
+  top: calc(100% - 6px);
+
+  list-style: none;
+
+  background-color: $neutral-05;
+  box-shadow: shadow(30) rgba($blue-90, 0.15);
+
+  // dropup menu list position
+  .dropup & {
+    top: unset;
+    bottom: calc(100% - 6px);
+
+    box-shadow: shadow(30) rgba($blue-90, 0.15);
+  }
+
+  .open > & {
+    display: block;
+  }
+
+  .disabled &,
+  :disabled & {
+    display: none;
+  }
+
+  a,
+  button {
+    display: block;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    width: 100%;
+
+    color: inherit;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+//# Dropdown/dropp content items styling
+.dropdown-item,
+.dropdown-menu > li {
+  display: block;
+  overflow: hidden;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 6px 18px;
+
+  color: $primary-neutral;
+
+  text-align: left;
+  font-size: 14px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  border: 0;
+  background-color: $neutral-05;
+  box-shadow: none;
+
+  &:not(a):not(button) {
+    padding: 0;
+
+    a,
+    button {
+      padding: 6px 18px;
+    }
+  }
+
+  // active state for content items
+  &.active {
+    color: $primary-blue;
+  }
+
+  // hover state for content items
+  &:hover {
+    background-color: $blue-10;
+  }
+
+  // focus state for content items
+  &:focus,
+  a:focus,
+  button:focus {
+    outline: 0;
+    box-shadow: inset 0 0 0 2px $blue-50;
+  }
+
+  // pressed state for content items
+  &:active,
+  a:active,
+  button:active {
+    background-color: $neutral-30;
+    box-shadow: none;
+  }
+
+  // disabled state for content items
+  &.disabled,
+  &:disabled {
+    &,
+    a,
+    button {
+      pointer-events: none;
+
+      color: $neutral-50;
+      box-shadow: none;
+    }
+  }
+}
+
+//# Dropdown/dropp styling in button groups
+.btn-group {
+  > .dropdown,
+  > .dropup {
+    .dropdown-toggle:before {
+      background-position: -4px -24px;
+    }
+  }
+
+  &.btn-group-lg {
+    > .dropdown,
+    > .dropup {
+      .dropdown-toggle:before {
+        top: 20px;
+      }
+    }
+  }
+
+  &.open {
+    position: relative;
+    z-index: 2;
+  }
+}

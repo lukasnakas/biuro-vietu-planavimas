@@ -1,0 +1,74 @@
+
+// Imports
+// @import '../settings/variables';
+
+// Top navigation - items from the top nav with icons intead of text (right side of the nav)
+
+.vismaicon.vismaicon-menu {
+    &.vismaicon-alert::before {
+        background-position: -88px 0;
+    }
+    &.vismaicon-message::before,
+    &.vismaicon-chat::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_message.svg");
+    }
+    &.vismaicon-settings::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_settings.svg");
+    }
+    &.vismaicon-user::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_user.svg");
+    }
+    &.vismaicon-shopping-cart::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_shopping_cart.svg");
+    }
+    &.vismaicon-home::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_home.svg");
+    }
+    &.vismaicon-library::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_library.svg");
+    }
+    &.vismaicon-calendar::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_calendar.svg");
+    }
+    &.vismaicon-search::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_search.svg");
+    }
+    &.vismaicon-tools::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_tool.svg");
+    }
+    &.vismaicon-user-settings::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_user_settings.svg");
+    }
+    &.vismaicon-reminder::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_reminder.svg");
+    }
+    &.vismaicon-phone::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_phone.svg");
+    }
+    &.vismaicon-logout::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_logout.svg");
+    }
+    &.vismaicon-location::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_location.svg");
+    }
+    &.vismaicon-info::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_info.svg");
+    }
+    &.vismaicon-help::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_help.svg");
+    }
+    &.vismaicon-favourites::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_favorites.svg");
+    }
+    &.vismaicon-docs::before {
+        background-image: url("#{$image-path}/vismaicons/top_menu/menu_document_production.svg");
+    }
+}
+
+.navbar-secondary {
+    .vismaicon {
+        &::before { background-position: -88px 0; }
+
+        &.vismaicon-alert::before { background-position: 0px 0; }
+    }
+}

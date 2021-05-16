@@ -1,0 +1,42 @@
+
+/**** Social icons ****/
+.vismaicon-facebook {
+&:before { background-image: url('#{$icons-path}/social-media/24_socialmedia_facebook.svg'); }
+}
+
+.vismaicon-flickr {
+&:before { background-image: url('#{$icons-path}/social-media/24_socialmedia_flickr.svg'); }
+}
+
+.vismaicon-google {
+&:before { background-image: url('#{$icons-path}/social-media/24_socialmedia_google.svg'); }
+}
+
+.vismaicon-linkedin {
+&:before { background-image: url('#{$icons-path}/social-media/24_socialmedia_linkedin.svg'); }
+}
+
+.vismaicon-pinterest {
+&:before { background-image: url('#{$icons-path}/social-media/24_socialmedia_pinterest.svg'); }
+}
+
+.vismaicon-skype {
+&:before { background-image: url('#{$icons-path}/social-media/24_socialmedia_skype.svg'); }
+}
+
+.vismaicon-tumblr {
+&:before { background-image: url('#{$icons-path}/social-media/24_socialmedia_tumblr.svg'); }
+}
+
+.vismaicon-twitter {
+&:before { background-image: url('#{$icons-path}/social-media/24_socialmedia_twitter.svg'); }
+}
+
+.vismaicon-vimeo {
+&:before { background-image: url('#{$icons-path}/social-media/24_socialmedia_vimeo.svg'); }
+}
+
+.vismaicon-youtube {
+&:before { background-image: url('#{$icons-path}/social-media/24_socialmedia_youtube.svg'); }
+}
+

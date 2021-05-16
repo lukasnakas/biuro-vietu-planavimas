@@ -1,0 +1,228 @@
+
+// Vertically stacked group buttons
+.btn-group-vertical {
+    display: inline-block;
+    vertical-align: top;
+
+    //# Button base style
+    .btn {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+
+        color: $primary-neutral;
+
+        border-color: $neutral-50;
+        background-color: $neutral-05;
+        box-shadow: shadow(20) rgba($blue-90, 0.12);
+
+        &:not(:first-child):not(:last-child) { border-radius: 0; }
+
+        &:not(:last-child) {
+            margin-bottom: 0;
+
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        &:not(:first-child) {
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+
+
+        //## Button style for 'selected state'
+        &.active {
+            border-color: $neutral-50;
+            background-color: $neutral-20;
+            box-shadow: none;
+
+            //### Button style for one that precede a 'selected' button
+            + .btn {
+                box-shadow: 0 -1px 0 0 $neutral-50, 0 -4px 4px -2px rgba($blue-90, 0.12), shadow(20) rgba($blue-90, 0.12);
+
+                // Button style for a 'selected' button that precede a 'selected' button
+                &.active {
+                    &:hover { box-shadow: 0 -1px 0 0 $blue-20; }
+
+                    &:focus { box-shadow: 0 -1px 0 0 $blue-50, inset 0 0 0 1px $blue-50; }
+
+                    &, &:active { box-shadow: 0 -1px 0 0 $neutral-50; }
+                } // END '.btn-group-vertical .btn.active + .btn.active'
+            } // END '.btn-group-vertical .btn.active + .btn'
+        } // END '.btn-group-vertical .btn.active'
+
+
+        //## Button style for 'hoverd state'
+        &:hover {
+            border-color: $blue-20;
+            background-color: $blue-10;
+            box-shadow: shadow(20) rgba($blue-50, 0.15);
+
+            //### Button style for one that precede a 'hoverd' button
+            + .btn {
+                box-shadow: 0 -1px 0 0 $blue-20, shadow(20) rgba($blue-90, 0.12);
+
+                // Button style for a 'selected' button that precede a 'hoverd' button
+                &.active {
+                    &, &:disabled, &.disabled { box-shadow: 0 -1px 0 0 $blue-20, inset 0 4px 4px -2px rgba($blue-90, 0.12); }
+                }
+
+                // Button style for a 'disabled' button that precede a 'hoverd' button
+                &:disabled, &.disabled { box-shadow: 0 -1px 0 0 $blue-20; }
+            } // END '.btn-group-vertical .btn:hover + .btn'
+        } // END '.btn-group-vertical .btn:hover'
+
+
+        //## Button style for 'focus state'
+        &:focus {
+            border-color: $blue-50;
+            box-shadow: inset 0 0 0 1px $blue-50, shadow(20) rgba($blue-90, 0.12);
+
+            //### Button style for one that precede a 'focused' button
+            + .btn {
+                &, &:hover { box-shadow: 0 -1px 0 0 $blue-50, shadow(20) rgba($blue-90, 0.12); }
+
+                // Button style for a 'selected' button that precede a 'focused' button
+                &.active {
+                    &:disabled, &.disabled { box-shadow: 0 -1px 0 0 $blue-50, inset 0 4px 4px -2px rgba($blue-90, 0.12); }
+                }
+
+                // Button style for a 'disabled' button that precede a 'focused' button
+                &:disabled, &.disabled { box-shadow: 0 -1px 0 0 $blue-50; }
+            } // END '.btn-group-vertical .btn:focus + .btn'
+        } // END '.btn-group-vertical .btn:focus'
+
+
+        //## Button style for 'pressed state'
+        &:active {
+            border-color: $neutral-50;
+            background-color: $neutral-40;
+            box-shadow: none;
+
+            //### Button style for one that precede a 'pressed' button
+            + .btn {
+                &, &:hover { box-shadow: 0 -1px 0 0 $neutral-50, 0 -6px 4px -4px rgba($blue-90, 0.12), shadow(20) rgba($blue-90, 0.12); }
+
+                // Button style for a 'disabled selected' button that precede a 'pressed' button
+                &.active {
+                    &:disabled, &.disabled { box-shadow: 0 -1px 0 0 $neutral-50, inset 0 4px 4px -2px rgba($blue-90, 0.12); }
+                }
+            } // END '.btn-group-vertical .btn:active + .btn'
+        } // END '.btn-group-vertical .btn:active'
+
+
+        //# Button base style for the second and up button in the group
+        + .btn {
+            border-top: 0;
+            box-shadow: 0 -2px 0 -1px $neutral-40, shadow(20) rgba($blue-90, 0.12);
+
+            // selected state
+            &.active { box-shadow: 0 -1px 0 0 $neutral-50, inset 0 4px 4px -2px rgba($blue-90, 0.12); }
+
+            // hover state
+            &:hover { box-shadow: 0 -1px 0 0 $blue-20, shadow(20) rgba($blue-50, 0.15); }
+
+            // focus state
+            &:focus {
+                box-shadow: 0 -1px 0 0 $blue-50, inset 0 0 0 1px $blue-50, shadow(20) rgba($blue-90, 0.12);
+
+                // Button style for a 'pressed' button that precede a 'focused' button
+                + .btn {
+                    &.active { box-shadow: 0 -1px 0 0 $blue-50, inset 0 4px 4px -2px rgba($blue-90, 0.12); }
+                }
+            } // END '.btn-group-vertical .btn + .btn:focus'
+
+            // pressed state
+            &:active {
+                box-shadow: 0 -1px 0 0 $neutral-50, inset 0 6px 4px -4px rgba($blue-90, 0.12);
+
+                // Button style for a button that precede a 'pressed' button
+                + .btn {
+                    box-shadow: 0 -1px 0 0 $neutral-50, 0 -6px 4px -4px rgba($blue-90, 0.12), shadow(20) rgba($blue-90, 0.12);
+
+                    // Button style for a 'selected', 'disabled' or 'selected disabled' button that precede a 'pressed' button
+                    &.active, &:disabled, &.disabled {
+                        &, &.active { box-shadow: 0 -1px 0 0 $neutral-50, 0 -6px 4px -4px rgba($blue-90, 0.12); }
+                    }
+                } // END '.btn-group-vertical .btn + .btn:active + .btn'
+            } // END '.btn-group-vertical .btn + .btn:active'
+        } // END '.btn-group-vertical .btn + .btn'
+    } // END '.btn-group-vertical .btn'
+} // END '.btn-group-vertical'
+
+
+// The default 'Disabled state' for the button in buttons group
+:disabled .btn-group-vertical .btn,
+.disabled .btn-group-vertical .btn,
+.btn-group-vertical:disabled .btn,
+.btn-group-vertical.disabled .btn,
+.btn-group-vertical .btn:disabled,
+.btn-group-vertical .btn.disabled {
+    color: $neutral-50;
+
+    border-color: $neutral-40;
+    box-shadow: none;
+
+    //# Button base style for 'disabled state'
+    &, &.btn-primary {
+        background-color: $neutral-05;
+
+        //## 'sellected disabled' button
+        &.active {
+            color: $neutral-70;
+
+            background-color: $neutral-20;
+
+            // Button style for one that precede a 'selected disabled' button
+            + .btn {
+                &.active {
+                    &:hover { box-shadow: 0 -1px 0 0 $blue-20; }
+
+                    &:focus { box-shadow: 0 -1px 0 0 $blue-50, inset 0 0 0 1px $blue-50; }
+
+                    &, &:active { box-shadow: 0 -1px 0 0 $neutral-50; }
+                }
+            }
+        }
+    }
+
+    //# Button base style for the second and up button in the 'disabled' group or pressed a 'disabled' button
+    + .btn {
+        box-shadow: 0 -1px 0 0 $neutral-50, shadow(20) rgba($blue-90, 0.12);
+
+        &.active { box-shadow: 0 -1px 0 0 $neutral-50, inset 0 4px 4px -2px rgba($blue-90, 0.12); }
+
+        &:hover { box-shadow: 0 -1px 0 0 $blue-20, shadow(20) rgba($blue-50, 0.15); }
+
+        &:focus { box-shadow: 0 -1px 0 0 $blue-50, inset 0 0 0 1px $blue-50, shadow(20) rgba($blue-90, 0.12); }
+
+        &:active { box-shadow: 0 -1px 0 0 $neutral-50, inset 0 6px 4px -4px rgba($blue-90, 0.12); }
+    }
+}
+
+
+:disabled .btn-group-vertical .btn,
+.disabled .btn-group-vertical .btn,
+.btn-group-vertical:disabled .btn,
+.btn-group-vertical.disabled .btn {
+    //# Button base style for a 'selected' button in the 'disabled' group
+    &.active {
+        + .btn {
+            box-shadow: 0 -1px 0 0 $neutral-40, 0 -6px 4px -4px rgba($blue-90, 0.12);
+
+            &.active {
+                &, &:focus { box-shadow: 0 -2px 0 -1px $neutral-40; }
+            }
+        }
+    }
+
+    //# Button base style for the second and up button in the 'disabled' group
+    + .btn {
+        &, &:focus { box-shadow: 0 -2px 0 -1px $neutral-40; }
+
+        &.active {
+            &, &:focus{ box-shadow: 0 -1px 0 0 $neutral-40, inset 0 6px 4px -4px rgba($blue-90, 0.12); }
+        }
+    }
+}

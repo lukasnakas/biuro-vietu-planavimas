@@ -1,0 +1,146 @@
+
+// Imports
+@import '../settings/variables';
+
+
+//=== Font types
+body, label, button {
+    margin: 0px;
+
+    // font: font-style font-variant font-weight font-size/line-height font-family
+    font:       normal     normal      $normal          $font-sm;
+}
+
+body {
+    color: $primary-neutral;
+    font-family: $font-family-base; 
+    text-align: left;
+    line-height: $line-height-base;
+    // background-color: $neutral-20;
+}
+
+p {
+    margin: 0 0 20px;
+}
+
+a {
+    cursor: pointer;
+
+    color: $primary-blue;
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:focus {
+        outline: 1px solid $primary-blue;
+        outline-offset: -1px;
+    }
+}
+
+b, strong { font-weight: $bold; }
+
+h1, .h1 {
+    margin: 0 0 20px;
+
+    font: $font-xl;
+}
+
+h2, .h2 {
+    margin: 0 0 15px;
+
+    font: $font-lg;
+}
+
+h3, .h3 {
+    margin: 0 0 15px;
+
+    font: $font-md;
+}
+
+h4, .h4 {
+    margin: 0 0 5px;
+
+    font: $font-sm;
+}
+
+h5, .h5 {
+    margin: 0 0 5px;
+
+    font: $font-xs;
+}
+
+h6, .h6 {
+    margin: 0 0 5px;
+
+    font: $bold $font-xs;
+}
+
+
+mark,
+.mark {
+    background-color: $orange-20;
+}
+
+code {
+    padding: 1px 4px;
+    font-size: 100%;
+} 
+	
+.lead {
+    font-weight: 200;   
+    font-size: 18px;
+}
+
+ul, ol {
+    margin: 0 0 18px;
+    padding-left: 30px;
+
+    ol, ul {
+        margin-top: 6px;
+        margin-bottom: 6px;
+    }
+}
+
+ul li,
+ol li { font: $font-sm; }
+
+// ol { padding-left: 15px; }
+
+// @media screen and (-webkit-min-device-pixel-ratio:0) {
+// 	/* Safari and Chrome */
+// 	ol { padding-left: 20px; }
+// }
+
+dl {
+    margin: 0 0 18px;
+}
+
+dt, dd {
+    margin-left: 0;
+}
+
+dt {
+    font-weight: $bold;
+}
+
+// text direction
+.right-direction { direction: rtl; }
+.left-direction { direction: ltr; }
+
+
+hr {
+    clear: both;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+
+    border: 0px;
+    border-bottom: 1px solid $neutral-40;
+
+    &.hr-default { border-color: $neutral-40; }
+    &.hr-primary { border-color: $primary-blue; }
+    &.hr-disabled { border-color: $neutral-10; }
+    &.hr-error { border-color: $primary-red; }
+}

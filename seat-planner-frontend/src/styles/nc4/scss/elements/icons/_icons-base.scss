@@ -1,0 +1,135 @@
+
+//=== Basic icon implementation
+.vismaicon {
+    display: inline-block;
+    position: relative;
+    top: 6px;
+    // margin-right: 6px;
+
+    user-select: none;
+
+    // 
+    &::before {
+        display: block;
+        content: "" !important;
+        position: relative;
+        width: 24px;
+        height: 24px;
+        margin: 0 auto;
+
+        background-color: transparent;
+        background-position: 0 0;
+        background-repeat: no-repeat;
+    }
+
+    // hover state, only for icon's in button or links wrappers
+    .hover:not(:active) > &, &.hover:not(:active),
+    .btn-link:hover:not(:active) > & {
+        &:before { background-position: -58px 0; }
+    }
+
+    // active state, only for icon's in button or links wrappers
+    .active &, &.active,
+    .btn-link:active &,
+    .btn-icon:active & {
+        &::before { background-position: 0px 0; }
+    }
+
+    // selected state
+    .selected > & {
+        &::before { background-position: -145px 0; }
+    }
+
+    // disabled state
+    .disabled &, &.disabled,
+    :disabled &, &:disabled,
+    .btn:disabled &,
+    .btn-link:disabled &,
+    .btn-icon:disabled & {
+        &::before { background-position: -29px 0; }
+    }
+
+    // '16px' icon version
+    &.vismaicon-sm {
+        top: 2px;
+
+        &::before {
+            width: 16px;
+            height: 16px;
+        }
+
+        // hover state, only for icon's in button or links wrappers
+        .hover:not(:active) > &, &.hover:not(:active),
+        .btn-link:hover:not(:active) > &,
+        .btn-icon:hover:not(:active) > & {
+            &:before { background-position: -42px 0; }
+        }
+
+        // disabled state
+        .disabled &, &.disabled,
+        :disabled &, &:disabled,
+        .btn:disabled &,
+        .btn-link:disabled &,
+        .btn-icon:disabled & {
+            &::before { background-position: -21px 0; }
+        }
+    }
+
+    // iformative icons
+    &.vismaicon-filled {
+        &:before,
+        &:hover:before,
+        &:active:before,
+        &.disabled:before { background-image: url('#{$icons-path}/informative-filled-icons/24_informative_icons.svg'); }
+
+        &.vismaicon-sm:before { background-image: url('#{$icons-path}/informative-filled-icons/16_informative_icons.svg'); }
+
+        &.vismaicon-lg:before {
+        width: 50px;
+        height: 50px;
+            background-image: url('#{$icons-path}/informative-filled-icons/50_informative_icons.svg');
+        }
+    }
+
+    .btn > & {
+        margin-top: -2px;
+    }
+
+    .btn-primary > &,
+    .btn-primary:hover:not(:active) > &,
+    .btn-primary:active > & {
+        &::before {
+            background-position: -87px 0;
+        }
+
+        &.vismaicon-sm {
+            &::before {
+                background-position: -63px 0;
+            }
+        }
+    }
+
+    // disabled state for icons in primary color buttons
+    .disabled.btn-primary > &, .btn-primary > &.disabled,
+    .btn-primary:disabled > &, .btn-primary > &:disabled,
+    .btn.btn-primary > :disabled & {
+        opacity: .6;
+    }
+
+    .btn-lg > & {
+        margin-top: -10px;
+    }
+
+    .btn-icon > & {
+        margin-right: 0;
+    }
+}
+
+
+
+
+
+/**** Icons in the main navigation ****/
+.navbar .navbar-right li.icon {
+    span.vismaicon:not(.vismaicon-menu):before { background-position: 0 0; }
+}

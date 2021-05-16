@@ -1,0 +1,390 @@
+// Imports
+@import "../settings/variables";
+
+// Tabs graphics variables
+$tabs-corner-bg: $tabs-graph-path + "/tab-corner.svg";
+$tabs-middle-bg: $tabs-graph-path + "/tab-middle.svg";
+$tabs-dropdown-trigger-bg: $tabs-graph-path + "/more-tabs-btn.svg";
+
+$tabs-height: 43px;
+
+$tabs-normal-Ypoition: 0px;
+$tabs-disabled-Ypoition: -50px;
+$tabs-hover-Ypoition: -100px;
+$tabs-pressed-Ypoition: -150px;
+$tabs-focus-Ypoition: -200px;
+$tabs-focus-hover-Ypoition: -250px;
+$tabs-selected-Ypoition: -300px;
+$tabs-selected-focused-Ypoition: -350px;
+
+$tabs-dropdown-Ypoition: 6px;
+$tabs-dropdown-normal-Xpoition: 0px;
+$tabs-dropdown-hover-Xpoition: -49px;
+$tabs-dropdown-focus-Xpoition: -98px;
+$tabs-dropdown-pressed-Xpoition: -147px;
+
+.tab-content {
+  display: block;
+  content: "";
+  border-top: 2px solid $green-60;
+  background-color: $neutral-05;
+  box-shadow: 0 1px 1px 0 #163e591a;
+}
+
+// Tabs general style
+.nav-tabs:not(.navbar-nav) {
+  display: inline-flex;
+  flex-wrap: wrap;
+  position: relative;
+
+  height: $tabs-height;
+  padding: 0 54px 0 4px;
+  margin: 0;
+  top: 3px;
+
+  border: 0px;
+  background: transparent;
+  box-shadow: none;
+
+  list-style: none;
+  z-index: 1;
+
+  // tabs items basic style
+  .nav-item {
+    position: relative;
+    margin: 0;
+    margin-right: -13px;
+    padding: 0 18px;
+    float: left;
+
+    a {
+      display: inline-block;
+      cursor: pointer;
+      position: relative;
+      height: $tabs-height;
+      padding: 16px 10px 4px;
+
+      color: $primary-neutral;
+      white-space: nowrap;
+      text-align: center;
+      text-decoration: none;
+
+      outline: 0;
+      // tabs items middle graphic
+      background: {
+        color: transparent;
+        image: url(#{$tabs-middle-bg});
+        position: 0 $tabs-normal-Ypoition;
+        background-repeat: repeat-x;
+      }
+
+      // tabs items corners graphics
+      &::before,
+      &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        width: 22px;
+        height: $tabs-height;
+        top: 0;
+
+        background: {
+          color: transparent;
+          image: url(#{$tabs-corner-bg});
+          position: 0 $tabs-normal-Ypoition;
+          background-repeat: no-repeat;
+        }
+      }
+
+      &::before {
+        left: -22px;
+      }
+
+      &::after {
+        right: -22px;
+        transform: scaleX(-1);
+      }
+
+      // tabs items on hover
+      &:hover,
+      &.hover {
+        &,
+        &::before,
+        &::after {
+          background-position-y: $tabs-hover-Ypoition;
+        }
+      }
+
+      // tabs items on focus
+      &:focus:not(:active),
+      &.focus:not(:active) {
+        &,
+        &::before,
+        &::after {
+          background-position-y: $tabs-focus-Ypoition;
+        }
+
+        // tabs items on focus and hover
+        &:hover,
+        &.hover {
+          &,
+          &::before,
+          &::after {
+            background-position-y: $tabs-focus-hover-Ypoition;
+          }
+        }
+      }
+
+      // tabs items on pressed state
+      &.pressed,
+      &:active {
+        &,
+        &::before,
+        &::after {
+          background-position-y: $tabs-pressed-Ypoition;
+        }
+      }
+    }
+
+    // tabs items on layer order
+    &:nth-last-child(24) {
+      z-index: 24;
+    }
+    &:nth-last-child(23) {
+      z-index: 23;
+    }
+    &:nth-last-child(22) {
+      z-index: 22;
+    }
+    &:nth-last-child(21) {
+      z-index: 21;
+    }
+    &:nth-last-child(20) {
+      z-index: 20;
+    }
+    &:nth-last-child(19) {
+      z-index: 19;
+    }
+    &:nth-last-child(18) {
+      z-index: 18;
+    }
+    &:nth-last-child(17) {
+      z-index: 17;
+    }
+    &:nth-last-child(16) {
+      z-index: 16;
+    }
+    &:nth-last-child(15) {
+      z-index: 15;
+    }
+    &:nth-last-child(14) {
+      z-index: 14;
+    }
+    &:nth-last-child(13) {
+      z-index: 13;
+    }
+    &:nth-last-child(12) {
+      z-index: 12;
+    }
+    &:nth-last-child(11) {
+      z-index: 11;
+    }
+    &:nth-last-child(10) {
+      z-index: 10;
+    }
+    &:nth-last-child(9) {
+      z-index: 9;
+    }
+    &:nth-last-child(8) {
+      z-index: 8;
+    }
+    &:nth-last-child(7) {
+      z-index: 7;
+    }
+    &:nth-last-child(6) {
+      z-index: 6;
+    }
+    &:nth-last-child(5) {
+      z-index: 5;
+    }
+    &:nth-last-child(4) {
+      z-index: 4;
+    }
+    &:nth-last-child(3) {
+      z-index: 3;
+    }
+    &:nth-last-child(2) {
+      z-index: 2;
+    }
+    &:last-child {
+      z-index: 1;
+    }
+
+    // tabs items selected
+    &.active {
+      cursor: default;
+      pointer-events: none;
+      z-index: 29;
+
+      a {
+        &,
+        &::before,
+        &::after {
+          background-position-y: $tabs-selected-Ypoition;
+        }
+      }
+
+      // tabs items selected and focused
+      &.focus,
+      a:focus,
+      a.focus {
+        &,
+        &::before,
+        &::after {
+          background-position-y: $tabs-selected-focused-Ypoition;
+        }
+      }
+    }
+
+    // tabs items on diusabled state
+    &.disabled a,
+    &:disabled a,
+    a.disabled,
+    a:disabled {
+      cursor: default;
+      pointer-events: none;
+
+      &,
+      &::before,
+      &::after {
+        background-position-y: $tabs-disabled-Ypoition;
+      }
+    }
+  }
+
+  // tabs overflow dropdown
+  .tabdrop {
+    overflow: visible;
+    position: absolute;
+    right: 2px;
+    margin: 0;
+    padding: 0;
+
+    border-right: 0;
+    box-shadow: none;
+    z-index: 30;
+
+    .caret {
+      display: none;
+    }
+
+    // tabs overflow dropdown trigger
+    .dropdown-toggle {
+      display: block;
+      content: "";
+      overflow: hidden;
+      padding: 0;
+      width: 44px;
+      height: $tabs-height;
+
+      background: {
+        color: transparent;
+        image: url(#{$tabs-dropdown-trigger-bg});
+        position: $tabs-dropdown-normal-Xpoition $tabs-dropdown-Ypoition;
+        repeat: no-repeat;
+      }
+
+      &::before,
+      &::after {
+        display: none;
+      }
+
+      // tabs overflow dropdown trigger on hover
+      &:hover {
+        background-position-x: $tabs-dropdown-hover-Xpoition;
+      }
+
+      // tabs overflow dropdown trigger on focus
+      &:focus {
+        outline: 0;
+
+        &:not(:active) {
+          background-position-x: $tabs-dropdown-focus-Xpoition;
+          background-position-y: $tabs-dropdown-Ypoition;
+          box-shadow: none;
+        }
+      }
+
+      // tabs overflow dropdown trigger on pressed
+      &:active {
+        background-position-x: $tabs-dropdown-pressed-Xpoition;
+      }
+    }
+
+    // tabs overflow dropdown menu
+    .dropdown-menu {
+      width: auto;
+      width: unset;
+      min-width: 160px;
+      top: 34px;
+      right: -12px;
+      left: auto;
+      margin: 0;
+      padding: 8px 0;
+
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: $neutral-05;
+      box-shadow: 0px 5px 10px #163e5926;
+
+      // tabs overflow dropdown menu items
+      li {
+        height: 36px;
+        padding: 0;
+
+        a {
+          height: 36px;
+          padding: 8px 18px;
+
+          text-align: left;
+          background: transparent;
+        }
+
+        &.disabled {
+          a {
+            color: $neutral-50;
+          }
+        }
+      }
+    }
+  }
+
+  // /* Justified tabs */
+  &.nav-justified {
+    width: 100%;
+
+    &.hide-tabdrop {
+      padding-right: 17px;
+    }
+
+    // tabs items style for justify tabs
+    .nav-item {
+      flex: 1;
+
+      // tabs overflow for justify tabs
+      &.tabdrop {
+        right: 0;
+
+        > a {
+          width: 44px;
+          height: $tabs-height;
+        }
+      }
+
+      a {
+        width: 100%;
+      }
+    }
+  }
+}
+
+//===

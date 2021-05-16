@@ -1,0 +1,21 @@
+// 
+// Imports
+@import '../settings/variables';
+
+
+// To navigation 'Configuration'
+
+//=== Basic nav style
+@import 'navigation/navigation-base';
+
+//=== Default top nav styles - Blue version
+@import 'navigation/navigation-default';
+
+//=== Secondary top nav styles - White version
+@import 'navigation/navigation-secondary'; 
+
+//=== Product dropdown area
+@import 'navigation/navigation-brand-dropdown';
+
+//=== Icons in the nav
+@import 'navigation/navigation-icons';  

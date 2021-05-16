@@ -1,0 +1,200 @@
+
+// Combine sets of button groups into button toolbars for more complex components
+.btn-toolbar {
+    //# Alternative styling for group buttons
+    &.btn-toolbar-primary {
+        .btn-group {
+
+            //## Defind the states for selected or pressed button in the alternative styling
+            .btn {
+
+                //### Selected state
+                &.active {
+                    color: $neutral-05;
+
+                    border-color: $primary-green;
+                    background-color: $primary-green;
+
+                    // selected and hovered state
+                    &:hover {
+                        border-color: $green-60;
+                        background-color: $green-60;
+
+                        // button style for a button that precede a 'selected and hoverd' button
+                        + .btn {
+                            box-shadow: -1px 0 0 0 $green-60, shadow(20) rgba($blue-90, 0.15);
+
+                            &.active {  box-shadow: -1px 0 0 0 $green-60; }
+                        }
+                    } // END '.btn-toolbar.btn-toolbar-primary .btn-group .btn.active:hover'
+
+                    // selected and focused state
+                    &:focus {
+                        border-color: $blue-50;
+                        box-shadow: inset 0 0 0 1px $blue-50, inset 0 0 0 2px $neutral-05;
+
+                        // button style for a button that precede a 'selected and focused' button
+                        + .btn {
+                            box-shadow: -1px 0 0 0 $blue-50, shadow(20) rgba($blue-90, 0.15);
+
+                            &.active {
+                                box-shadow: -1px 0 0 0 $blue-50;
+
+                                &:hover { box-shadow: -1px 0 0 0 $blue-50; }
+                            }
+
+                            &:hover { box-shadow: -1px 0 0 0 $blue-50, shadow(20) rgba($blue-90, 0.15); }
+                        }
+                    } // END '.btn-toolbar.btn-toolbar-primary .btn-group .btn.active:focus'
+
+                    // selected and pressed state
+                    &:active {
+                        border-color: $green-80;
+                        background-color: $green-80;
+                        box-shadow: none;
+
+                        // button style for a button that precede a 'selected and pressed' button
+                        + .btn {
+                            box-shadow: -1px 0 0 0 $green-90, -6px 0 4px -4px rgba($blue-90, 0.12), shadow(20) rgba($blue-90, 0.12);
+
+                            &.active {
+                                &, &:hover { box-shadow: -1px 0 0 0 $green-90, -6px 0 4px -4px rgba($blue-90, 0.12); }
+                            }
+
+                            &:hover { box-shadow: -1px 0 0 0 $green-90, shadow(20) rgba($blue-90, 0.15); }
+                        }
+                    } // END '.btn-toolbar.btn-toolbar-primary .btn-group .btn.active:active'
+
+                    // selected and disabled state
+                    &:disabled, &.disabled {
+                        color: $green-20;
+
+                        border-color: $green-40;
+                        background-color: $green-40;
+
+                        // button style for a button that precede a 'selected and disabled' button
+                        + .btn { box-shadow: -1px 0 0 0 $green-60, 6px 0 4px -4px rgba($blue-90, 0.12), shadow(20) rgba($blue-90, 0.12); }
+                    } // END '.btn-toolbar.btn-toolbar-primary .btn-group .btn.active.disabled'
+
+                    // button style for a button that precede a 'selected' button
+                    + .btn {
+                        box-shadow: -1px 0 0 0 $green-80, -6px 0 4px -4px rgba($blue-90, 0.12), shadow(20) rgba($blue-90, 0.12);
+
+                        &:hover { box-shadow: -1px 0 0 0 $blue-20, shadow(20) rgba($blue-90, 0.15); }
+
+                        &:focus { box-shadow: -1px 0 0 0 $blue-50, inset 0 0 0 1px $blue-50, shadow(20) rgba($blue-90, 0.12); }
+
+                        &:active { box-shadow: -1px 0 0 0 $neutral-50, inset 6px 0 4px -4px rgba($blue-90, 0.12); }
+                    } // END '.btn-toolbar.btn-toolbar-primary .btn-group .btn.active + .btn'
+                } // END '.btn-toolbar.btn-toolbar-primary .btn-group .btn.active'
+
+                //### Button hoverd state
+                &:hover {
+                    // button style for a button that precede a 'hoverd' button
+                    + .btn {
+                        &.active {
+                            &:focus { box-shadow: -1px 0 0 0 $blue-50, inset 0 0 0 1px $blue-50, inset 0 0 0 2px $neutral-05; }
+
+                            &:active { box-shadow: -1px 0 0 0 $green-80, inset 6px 0 4px -4px rgba($blue-90, 0.12); }
+
+                            &, &:disabled, &.disabled { box-shadow: -1px 0 0 0 $blue-20, inset 6px 0 4px -4px rgba($blue-90, 0.12); }
+                        }
+                    }
+                } // END '.btn-toolbar.btn-toolbar-primary .btn-group .btn:hover'
+
+                //### Button focus state
+                &:focus {
+                    // button style for a button that precede a 'focused' button
+                    + .btn {
+                        &.active {
+                            &:hover { box-shadow: -1px 0 0 0 $blue-50; }
+
+                            &, &:disabled, &.disabled { box-shadow: -1px 0 0 0 $blue-50, inset 6px 0 4px -4px rgba($blue-90, 0.12); }
+                        }
+                    }
+                } // END '.btn-toolbar.btn-toolbar-primary .btn-group .btn:focus'
+
+                //### Button pressed state
+                &:active {
+                    // button style for a button that precede a 'pressed' button
+                    + .btn {
+                        &.active {
+                            box-shadow: -1px 0 0 0 $neutral-50, 6px 0 4px -4px rgba($blue-90, 0.12);
+
+                            &:hover { box-shadow: -1px 0 0 0 $neutral-50, -6px 0 4px -4px rgba($blue-90, 0.12); }
+
+                            &:disabled, &.disabled { box-shadow: -6px 0 4px -4px rgba($blue-90, 0.12), -2px 0 0 -1px $neutral-40; }
+                        }
+                    }
+                } // END '.btn-toolbar.btn-toolbar-primary .btn-group .btn:active'
+
+
+                //### Restyling the second and up button in the group
+                + .btn {
+                    &.active {
+                        box-shadow: -1px 0 0 0 $green-80, inset 6px 0 4px -4px rgba($blue-90, 0.12);
+
+                        &:hover { box-shadow: -1px 0 0 0 $green-60; }
+
+                        &:focus { box-shadow: -1px 0 0 0 $blue-50, inset 0 0 0 1px $blue-50, inset 0 0 0 2px $neutral-05; }
+
+                        &:active { box-shadow: -1px 0 0 0 $green-80, inset 6px 0 4px -4px rgba($blue-90, 0.12); }
+
+                        &:disabled, &.disabled { box-shadow: -1px 0 0 0 $green-60, inset 6px 0 4px -4px rgba($blue-90, 0.12); }
+                    } // END '.btn-toolbar.btn-toolbar-primary .btn-group .btn + .btn.active'
+                } // END '.btn-toolbar.btn-toolbar-primary .btn-group .btn + .btn'
+            } // END '.btn-toolbar.btn-toolbar-primary .btn-group .btn'
+        } // END '.btn-toolbar.btn-toolbar-primary .btn-group'
+    } // END '.btn-toolbar.btn-toolbar-primary'
+} // END '.btn-toolbar'
+
+
+// The default 'Disabled state' for the button in alternative styling group
+:disabled .btn-toolbar-primary .btn-group .btn,
+.disabled .btn-toolbar-primary .btn-group .btn,
+.btn-toolbar-primary:disabled .btn-group .btn,
+.btn-toolbar-primary.disabled .btn-group .btn,
+.btn-toolbar-primary .btn-group:disabled .btn,
+.btn-toolbar-primary .btn-group.disabled .btn {
+    //# Selected state for a button in a disabled group
+    &.active {
+        color: $green-20;
+
+        border-color: $green-40;
+        background-color: $green-40;
+
+        //### Removing 'focus state' for a 'selected' button in a disabled group
+        &:focus {
+            border-color: $green-40;
+            box-shadow: none;
+
+            + .btn {
+                box-shadow: -1px 0 0 0 $green-50, -6px 0 4px -4px rgba($green-90, 0.12);
+
+                &.active { box-shadow: -1px 0 0 0 $green-50; }
+            }
+        } // END '.btn-toolbar.btn-toolbar-primary.disabled .btn-group .btn.active:focus'
+
+        + .btn {
+            &, &:focus {
+                box-shadow: -1px 0 0 0 $green-50, -6px 0 4px -4px rgba($green-90, 0.12);
+
+                &.active { box-shadow: -1px 0 0 0 $green-50; }
+            }
+        } // END '.btn-toolbar.btn-toolbar-primary.disabled .btn-group .btn.active + .btn'
+    } // END '.btn-toolbar.btn-toolbar-primary.disabled .btn-group .btn.active'
+
+    //# Removing 'focus state' for a button in a disabled group
+    &:focus {
+        + .btn {
+            &.active { box-shadow: -1px 0 0 0 $green-50, inset 6px 0 4px -4px rgba($green-90, 0.12); }
+        }
+    } // END '.btn-toolbar.btn-toolbar-primary.disabled .btn-group .btn:focus'
+
+    //## Second and up button for a button in 'disabled group'
+    + .btn {
+        &.active {
+            &, &:focus { box-shadow: -1px 0 0 0 $green-50, inset 6px 0 4px -4px rgba($green-90, 0.12); }
+        }
+    } // END '.btn-toolbar.btn-toolbar-primary.disabled .btn-group .btn + .btn'
+} // END '.btn-toolbar.btn-toolbar-primary.disabled .btn-group .btn' or '.btn-toolbar.btn-toolbar-primary .btn-group.disabled .btn'

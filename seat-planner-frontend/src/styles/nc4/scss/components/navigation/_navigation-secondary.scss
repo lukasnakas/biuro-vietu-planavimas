@@ -1,0 +1,122 @@
+
+// Top navigation - secondary styles - WHITE VERSION
+
+.navbar {
+    &.navbar-secondary {
+        background: $white;
+        box-shadow: 0 -1px 0 $neutral-20 inset, 0 5px 10px rgba(22, 62, 89, 0.08);
+
+        .dropdown-toggle {
+            .caret {
+                background-position: -5px -27px;
+            }
+        }
+    }
+}
+
+
+/* Product dropdown area */
+.navbar-secondary {
+    .navbar-header {
+        .navbar-brand {
+            > a,
+            > .dropdown-toggle {
+                border-right: 1px solid $neutral-20;
+                color: $primary-neutral;
+               
+                &:hover { background-color: $blue-10; }
+            }
+        }
+    }
+}
+
+
+/* navbar */
+.navbar-secondary {
+    .navbar-collapse {
+        .nav {
+            li {
+                a {
+                    color: $primary-neutral;
+
+                    &:hover{ background: $blue-10; }
+                }
+            }
+        }
+
+        .first-level.navbar-right {
+            > .icon {
+                &.attention {
+                    a:before {
+                        box-shadow: 0 2px 4px rgba(178, 60, 0, 0.2);
+                    }
+                }
+            }
+            .user-dropdown {
+                > .dropdown-toggle { border-left: 1px solid $neutral-20; }
+
+                &.icon {
+                    .dropdown-toggle {
+                        .vismaicon::before { background-position: -88px 0; }
+                    }
+
+                    &.open {
+                        .dropdown-toggle {
+                            .vismaicon::before { background-position: -88px 0; }
+                        }
+                    }
+                }
+            }
+        }
+
+        .first-level {
+            > li > a { color: $primary-neutral; }
+
+            > .active {
+                > a { 
+                    color: $primary-blue;
+                    font-weight: bold;
+
+                    &, &:hover, &:focus, &:active { box-shadow: 0 -4px 0 $blue-50 inset; }
+                }
+            }
+
+            .menudrop {
+                > .dropdown-toggle {
+                    .icon-align-justify {
+                        background: $neutral-80;
+
+                        &::before, &::after { background: $neutral-80; }
+                    }
+                }
+
+                &.open {
+                    .dropdown-toggle {
+                        background-color: $white;
+
+                        &:hover {
+                            background-color: $blue-10;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.navbar-secondary {
+    &.navbar.is-mobile {
+        .navbar-collapse{
+            .first-level {
+                .menudrop {
+                    .icon-align-justify {
+                        &,
+                        &::before, 
+                        &::after { background: $neutral-80; }
+                    }
+                }
+            }
+        }
+    }
+}
+

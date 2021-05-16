@@ -1,0 +1,223 @@
+// Imports
+@import '../settings/variables';
+
+//# Table
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 18px;
+    border-spacing: 0;
+    border-collapse: separate;
+
+    box-shadow: shadow(10) rgba($blue-90, 0.1);
+
+    > caption {
+        text-align: left;
+        padding: 8px 17px;
+        }
+
+    > thead, > tbody, > tfoot { 
+        background: $white;
+        > tr {
+            > th, > td {  
+                padding-left: 17px; 
+                padding-right: 27px; 
+                text-align: left;
+                }   
+            }
+        }
+
+    > thead { 
+        > tr {
+            > th, > td { 
+                border-right-width: 1px;
+                border-right-style: solid;
+                border-right-color: $neutral-20;
+                border-bottom: 1px solid $neutral-20; 
+                min-height: 48px;
+                padding-top: 14px;
+                padding-bottom: 13px;
+                font-weight: $semibold;
+
+                &:last-child { 
+                    border-right-width: 0; 
+                    }
+                }
+            }
+        }
+
+    > tbody {
+        > tr {
+            &:nth-child(2n) > th,
+            &:nth-child(2n) > td {
+                background-color: $neutral-10;
+                }
+
+            > th, > td {
+                font-weight: normal;
+                min-height: 36px;
+                padding-top: 8px;
+                padding-bottom: 8px;
+                background: url(#{$image-path}/dotted-on-white-vertical.svg) repeat-y transparent right top;
+
+                &:last-child { background-image: none; }
+                }
+            }
+        }
+
+    > tfoot {
+        > tr {
+            > th, > td { 
+                font-weight: normal;
+                padding-top: 17px;
+                padding-bottom: 18px;
+                border-top: 1px solid $neutral-20; 
+
+                > p,
+                > .btn { margin-bottom: 0; }
+                }
+            }
+        }
+
+        
+    //## '.table-bordered' - add border on the tables in case the tables will be added on a white background
+    &.table-bordered {
+        border: 1px solid $neutral-20;
+        border-bottom: 0;
+        }
+
+
+    //## '.table-hover' - hover state for table fields (this applied to .table-active too)
+    &.table-active,
+    &.table-hover {
+        > thead { 
+            > tr {
+                > th, > td {
+                    &:hover {
+                        background-color: $blue-10;
+                        border-right-color: $blue-10;
+                        border-bottom-color: $blue-10; 
+                        box-shadow: -1px 0 0 $blue-10;
+                        cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+        > tbody {
+            > tr {
+                &:hover > th,
+                &:hover > td {
+                    background-color: $blue-10;
+                    cursor: pointer;
+                    }
+                }
+            }
+        }
+
+
+    //## '.table-active' - active state for table fields
+    &.table-active {
+        > thead { 
+            > tr {
+                > th, > td {
+                    &:active {
+                        background-color: rgba($blue-90, 0.1);
+                        border-right-color: $neutral-40;
+                        border-bottom-color: $neutral-40; 
+                        box-shadow: -1px 0 0 $neutral-40;
+                        }
+                    }
+                }
+            }
+
+        > tbody {
+            > tr {
+                &:active > th,
+                &.active > th,
+                &:active > td,
+                &.active > td {
+                    background-color: $neutral-20;
+                    cursor: pointer;
+
+                    &:first-child {
+                        position: relative;
+
+                        &:before {
+                            content: '';
+                            background: $green-60;
+                            width: 5px;
+                            height: 100%;
+                            display: inline-block;
+                            position: absolute;
+                            left: 0;
+                            margin-top: -8px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    //## '.table-condensed' - make tables more compact
+    &.table-condensed {
+        > thead { 
+            > tr {
+                > th, > td { 
+                    min-height: 30px;
+                    padding-top: 6px;
+                    padding-bottom: 6px;
+                    }
+                }
+            }
+
+        > tbody {
+            > tr {
+                > th, > td { 
+                    min-height: 27px;
+                    padding-top: 4px;
+                    padding-bottom: 4px;
+                    }
+                }
+            }
+    
+        > tfoot {
+            > tr {
+                > th, > td { 
+                    padding-top: 13px;
+                    padding-bottom: 13px;
+                    }
+                }
+            }
+
+        &.table-active {
+            > tbody > tr.active {
+                > td,
+                > th {
+                    &:first-child:before { margin-top: -4px; }
+                    }                 
+                }
+            }
+        }
+    }
+
+
+//# Responsive tables
+.table-responsive {
+    min-height: .01%;
+    overflow-x: auto;
+
+    @media(max-width: $screen-md-min) {
+        width: 100%;
+        margin-bottom: 18px;
+        overflow-y: hidden;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        box-shadow: shadow(10) rgba($blue-90, 0.1);
+
+        > .table { 
+            margin: 0; 
+            box-shadow: none;
+            }
+        }
+    }
+

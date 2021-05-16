@@ -1,0 +1,136 @@
+
+/**** Action icons - Circle action icons ****/
+.vismaicon-menu-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_menu.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_menu.svg'); }
+}
+
+.vismaicon-add-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_add.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_add.svg'); }
+}
+
+.vismaicon-add2-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_add2.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_add2.svg'); }
+}
+
+.vismaicon-remove-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_remove.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_remove.svg'); }
+}
+
+.vismaicon-ok-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_ok.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_ok.svg'); }
+}
+
+.vismaicon-cancel-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_cancel.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_cancel.svg'); }
+}
+
+.vismaicon-cancel-gray-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_cancel-grey.svg'); }
+&.vismaicon-sm:before { background-image: none; }
+}
+
+.vismaicon-arrow-up-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_arrow_up.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_arrow_up.svg'); }
+}
+
+.vismaicon-arrow-down-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_arrow_down.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_arrow_down.svg'); }
+}
+ 
+.vismaicon-arrow-left-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_arrow_left.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_arrow_left.svg'); }
+}
+ 
+.vismaicon-arrow-right-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_arrow_right.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_arrow_right.svg'); }
+}
+ 
+.vismaicon-expand-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_expand.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_expand.svg'); }
+}
+ 
+.vismaicon-collapse-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_collapse.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_collapse.svg'); }
+}
+ 
+.vismaicon-other-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_other.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_other.svg'); }
+}
+ 
+.vismaicon-forward-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_forward.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_forward.svg'); }
+}
+ 
+.vismaicon-rewind-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_rewind.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_rewind.svg'); }
+}
+ 
+.vismaicon-pause-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_pause.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_pause.svg'); }
+}
+ 
+.vismaicon-play-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_play.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_play.svg'); }
+}
+ 
+.vismaicon-first-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_first.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_first.svg'); }
+}
+ 
+.vismaicon-last-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_last.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_last.svg'); }
+}
+ 
+.vismaicon-move-up-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_up.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_up.svg'); }
+}
+ 
+.vismaicon-move-down-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_down.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_down.svg'); }
+}
+ 
+.vismaicon-move-left-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_left.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_left.svg'); }
+}
+ 
+.vismaicon-move-right-circle {
+&:before { background-image: url('#{$icons-path}/action-icons/24_right.svg'); }
+&.vismaicon-sm:before { background-image: url('#{$icons-path}/action-icons/16_right.svg'); }
+}
+
+
+
+/**** Interface controls icons ****/
+.vismaicon-datepicker {
+&:before { background-image: url('#{$icons-path}/interface-controls/datepicker.svg'); }
+}
+
+.vismaicon-autocomplete {
+&:before { background-image: url('#{$icons-path}/interface-controls/autocomplete.svg'); }
+}
+
+.vismaicon-multiselection {
+&:before { background-image: url('#{$icons-path}/interface-controls/multiselection.svg'); }
+}

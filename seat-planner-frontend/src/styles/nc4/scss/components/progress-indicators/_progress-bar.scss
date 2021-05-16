@@ -1,0 +1,74 @@
+
+// Imports
+@import '../../settings/variables';
+
+//Progress bar general style
+.progress {
+    overflow: visible;
+    position: relative;
+    height: 20px;
+    margin-bottom: 36px;
+
+    vertical-align: middle;
+
+    border-radius: 10px;
+    background: $neutral-40;
+
+    .progress-bar {
+        width: 0%;
+        height: 20px;
+        padding-right: 6px;
+
+        color: $neutral-05;
+        color: transparent;
+        text-align: right;
+        font-weight: $normal;
+
+        border-radius: 10px;
+        background-color: $blue-50;
+        box-shadow: shadow(20) rgba($primary-blue, 0.25);
+        transition: width .6s ease;
+    }
+
+    .progress-label {
+        overflow: hidden;
+        position: relative;
+        padding-right: 24px;
+        top: 5px;
+
+        color: $neutral-80;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .percentage {
+        position: absolute;
+        top: 25px;
+        right: 0;
+        color: $neutral-80;
+    }
+
+    &.progress-xs {
+        height: 6px;
+        margin-bottom: 34px;
+        border-radius: 3px;
+
+        .progress-bar { height: 6px; }
+        .percentage { top: 9px; }
+        .progress-label { top: 3px; }
+    }
+
+    &.progress-sm {
+        height: 10px;
+        margin-bottom: 38px;
+        border-radius: 5px;
+
+        .progress-bar { height: 10px; }
+        .percentage { top: 17px; }
+        .progress-label { top: 7px; }
+    }
+
+    .progress-bar[aria-valuenow="0"] { min-width: 0px; }
+}
+
+

@@ -1,0 +1,32 @@
+
+
+/**** Informative icons ****/
+.vismaicon-error {
+&:before { background-position: -29px 0px; }
+&.vismaicon-lg:before { background-position: -55px 0px; }
+&.vismaicon-sm:before { background-position: -21px 0px; }
+}
+
+.vismaicon-warning {
+&:before { background-position: -58px 0px; }
+&.vismaicon-lg:before { background-position: -110px 0px; }
+&.vismaicon-sm:before { background-position: -42px 0px; }
+}
+
+.vismaicon-info:not(.vismaicon-menu) {
+&:before { background-position: -87px 0px; }
+&.vismaicon-lg:before { background-position: -165px 0px; }
+&.vismaicon-sm:before { background-position: -63px 0px; }
+}
+
+.vismaicon-success {
+&:before { background-position: 0px 0px; }
+&.vismaicon-lg:before { background-position: 0px 0px; }
+&.vismaicon-sm:before { background-position: 0px 0px; }
+}
+
+.vismaicon-help.vismaicon-filled {
+&:before { background-position: -116px 0px; }
+&.vismaicon-lg:before { background-position: -220px 0px; }
+&.vismaicon-sm:before { background-position: -84px 0px; }
+}

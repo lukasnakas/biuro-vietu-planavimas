@@ -1,0 +1,91 @@
+
+// Imports
+@import '../../settings/variables';
+
+//Popover general style
+.popover {
+    display: none;
+    position: absolute;
+    width: 90vw;
+    max-width: 480px;
+    padding: 12px 24px;
+    padding: 60px;
+    top: 0;
+    left: 0;
+
+    border-radius: $border-radius-10;
+    border: {
+        width: 1px;
+        style: solid;
+        color: $neutral-05;
+    }
+
+    background-color: $neutral-05;
+    box-shadow: shadow(50) rgba($blue-90, 0.2);
+
+    z-index: $zindex-popover;
+
+    &::before {
+        display: block;
+        position: absolute;
+        content: '';
+        width: 12px;
+        height: 26px;
+        top: calc(#{'50% - 13px'});
+        left: -10px;
+
+        background: {
+            color: transparent;
+            image: url(arrowTip($neutral-05));
+            position: 0 0;
+            repeat: no-repeat;
+        };
+    }
+
+    &.in {
+        display: block;
+    }
+
+    &.top {
+        &::before {
+            top: unset;
+            bottom: -17px;
+            left: calc(#{'50% - 13px'});
+
+            transform: rotate(-90deg);
+        }
+    }
+
+    &.right {
+    }
+
+    &.bottom {
+        &::before {
+            top: -17px;
+            left: calc(#{'50% - 13px'});
+
+            transform: rotate(90deg);
+        }
+    }
+
+    &.left {
+        &::before {
+            right: -10px;
+            left: unset;
+
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.popover-title {
+    font-weight: $bold;
+}
+
+.popover-content {
+    p {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

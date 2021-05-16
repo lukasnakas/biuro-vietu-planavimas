@@ -1,0 +1,60 @@
+
+// Buton as link
+.btn {
+    &.btn-link,
+    &.btn-icon {
+        min-width: auto;
+        max-width: unset;
+        padding: 5px 0;
+        
+        color: $primary-blue;
+        text-decoration: underline;
+
+        border-color: transparent;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+
+        //### '.btn-link' hover state
+        &:hover {
+            color: $blue-50;
+            text-decoration: none;
+        }
+
+        //### '.btn-link' focus state
+        &:focus {
+            text-decoration: none;
+
+            box-shadow: 0 0 0 1px $blue-50;
+        }
+
+        //### '.btn-link' active/pressed state
+        &:active { color: $primary-blue; }
+
+        //### '.btn-link' active/selected state
+        &.active {
+            color: $primary-neutral;
+            text-decoration: none;
+        }
+
+        //### '.btn-link' disabled state 
+        &:disabled, &.disabled,
+        :disabled &, .disabled & {
+            color: $neutral-50;
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+
+    &.btn-icon {
+        padding-right: 6px;
+        padding-left: 6px;
+
+        &.btn-lg {
+            padding-right: 9px;
+            padding-left: 9px;
+        }
+    }
+}

@@ -1,0 +1,46 @@
+
+// Button Default Theme
+.btn {
+    border-color: $neutral-50;
+    background-color: $neutral-05;
+    box-shadow: shadow(20) rgba($blue-90, 0.12);
+
+    //### '.btn-default' hover state
+    &:hover {
+        border-color: $blue-20;
+        background-color: $blue-10;
+        box-shadow: shadow(20) rgba($blue-50, 0.15);
+    }
+
+    //### '.btn-default' focus state
+    &:focus {
+        border-color: $blue-50;
+        box-shadow: inset 0 0 0 1px $blue-50, shadow(20) rgba($blue-50, 0.15);
+    }
+
+    //### '.btn-default' active/pressed and active/selected state
+    &:active, &.active {
+        border-color: $neutral-50;
+        background-color: $neutral-40;
+        box-shadow: none;
+    }
+
+    //### '.btn-default' active/selected state in group buttons
+    .btn-group & {
+        &.active {
+            background-color: $neutral-20;
+
+            &:active { background-color: $neutral-40; }
+        }
+    }
+
+    //### '.btn-default' disabled state
+    &:disabled, &.disabled,
+    :disabled &, .disabled & {
+        color: $neutral-60;
+
+        border-color: $neutral-40;
+        background-color: $neutral-05;
+        box-shadow: none;
+    }
+}

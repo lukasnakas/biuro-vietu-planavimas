@@ -1,0 +1,99 @@
+
+// Imports
+@import '../../settings/variables';
+
+//Tooltip general style
+.tooltip {
+    display: none;
+    position: absolute;
+    min-width: 180px;
+    max-width: 90vw;
+    padding: 12px 24px;
+    top: 0;
+    left: 0;
+
+    color: $primary-neutral;
+    text-align: left;
+
+    border-radius: $border-radius-10;
+    border: {
+        width: 1px;
+        style: solid;
+        color: $orange-40;
+    }
+
+    background-color: $orange-05;
+    box-shadow: shadow(30) rgba($orange-70, 0.15);
+
+    z-index: $zindex-tooltip;
+
+    &::before {
+        display: block;
+        position: absolute;
+        content: '';
+        width: 12px;
+        height: 26px;
+        top: calc(#{'50% - 13px'});
+        left: -10px;
+
+        background: {
+            color: transparent;
+            image: url(arrowTip($orange-40, $orange-05));
+            position: 0 0;
+            repeat: no-repeat;
+        };
+    }
+
+    &.tooltip-error {
+        color: $red-80;
+
+        border-color: $red-70;
+        background-color: $neutral-05;
+        box-shadow: shadow(30) rgba($red-70, 0.15);
+
+        &::before {
+            background-image: url(arrowTip($red-70));
+        }
+    }
+
+    &.top {
+        text-align: center;
+
+        &::before {
+            top: unset;
+            bottom: -17px;
+            left: calc(#{'50% - 13px'});
+
+            transform: rotate(-90deg);
+        }
+    }
+
+    &.right {
+    }
+
+    &.bottom {
+        text-align: center;
+
+        &::before {
+            top: -17px;
+            left: calc(#{'50% - 13px'});
+
+            transform: rotate(90deg);
+        }
+    }
+
+    &.left {
+        text-align: right;
+
+        &::before {
+            right: -10px;
+            left: unset;
+
+            transform: rotate(180deg);
+        }
+    }
+
+    &.in {
+        display: block;
+    }
+}

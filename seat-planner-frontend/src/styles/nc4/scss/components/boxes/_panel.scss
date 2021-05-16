@@ -1,0 +1,185 @@
+
+// Panel wrapper
+.panel, .panel-group {
+    margin-bottom: 12px;
+    padding: 0;
+
+    background-color: $neutral-05;
+    box-shadow: shadow(10) rgba($blue-90, 0.1);
+
+    // panel default inner spaceing
+    .panel-heading,
+    .panel-body {
+        padding: 18px 30px;
+    }
+
+    // Panel heading and title styleing
+    .panel-heading {
+        &, .panel-title {
+            margin: 0;
+
+            color: $primary-neutral;
+            line-height: 24px;
+        }
+
+        .panel-title {
+            font: {
+                size: 16px;
+                weight: $bold;
+            }
+        }
+
+        // arrow styling for 'toggle' trigger
+        [data-toggle="collapse"] {
+            .caret {
+                margin-right: 3px;
+            }
+
+            // hover for default arrow/carot
+            &:hover {
+                .caret {
+                    &:not([class*='caret-']) {
+                        background-position-x: -84px;
+                    }
+                }
+            }
+
+            &:not(.collapsed) {
+                .caret {
+                    // background-position: -4px -41px;
+                    &:not([class*='caret-']) {
+                        background-position-y: -5px;
+                    }
+                }
+
+                // large carrot
+                .caret {
+                    &[class*=caret-large] {
+                        background-position-y: -6px;
+                    }
+                }
+
+            }
+        }
+    }
+
+    // reset spacing for the depper inner pannel
+    .panel-body {
+        .panel {
+            .panel-heading,
+            .panel-body,
+            .panel-footer {
+                padding-right: 0;
+                padding-bottom: 0;
+                padding-left: 0;
+            }
+        }
+    }
+
+    // pannel footer styling
+    .panel-footer {
+        padding: 24px 30px;
+
+        border-top: 1px solid $neutral-20;
+
+        @include clearfix();
+
+        > .btn, > .btn-group {
+            margin-bottom: 0;
+        }
+    }
+
+    // remove margin bottom for the last paragraph in panel body
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    // reset styling for list inside panels
+    .list-group {
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    // reset inner spacing for table in panels
+    .table {
+        box-shadow: 0 1px 1px 0 rgba($blue-90, 0.1), 0 -1px 0 0 $neutral-20;
+
+        > thead > tr > th,
+        > tbody > tr > td,
+        > tbody > tr > th {
+            &:first-child {
+                padding-left: 30px;
+            }
+            &:last-child {
+                padding-right: 30px;
+            }
+        }
+    }
+}
+
+// Panel groups style
+.panel-group {
+    [data-toggle="collapse"] {
+        display: inline-block;
+
+        font-weight: $normal;
+    }
+
+    // Anchors in panel title
+    .panel-title {
+        a {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .panel-heading {
+        padding-bottom: 0;
+    }
+
+    .panel {
+        margin-bottom: 0;
+        box-shadow: none;
+
+        .panel {
+            .panel-title {
+                a {
+                    color: $primary-neutral;
+
+                    &:hover {
+                        color: $primary-blue;
+                    }
+                }
+            }
+        }
+    }
+
+    > .panel {
+        &:last-child {
+            > .panel-heading .collapsed {
+                margin-bottom: 18px;
+            }
+        }
+
+        > .panel-collapse {
+            > .panel-body {
+                padding-top: 0;
+            }
+        }
+    }
+
+    // style for collapse panel
+    .panel-collapse {
+        &.collapse {
+            display: none;
+    
+            &.in {
+                display: block;
+            }
+        }
+    }
+}
+
