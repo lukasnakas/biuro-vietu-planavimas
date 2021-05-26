@@ -11,18 +11,11 @@ const RoomDetailsComponent = (props) => {
   return (
     <div className="row">
       <div className="col">
-        <div className="row">
-          <div className="col">
-            <h1>
-              <strong>{props.selectedLocationPath}</strong>
-            </h1>
-          </div>
-        </div>
         <div className="row justify-content-start">
           <div className="col text-left">
             <h2 style={{ marginBottom: "0px" }}>Komandos</h2>
             <div
-              className="panel panel-default"
+              className="panel panel-default box-shadowless"
               style={{
                 paddingTop: "0px",
                 paddingLeft: "10px",
@@ -36,14 +29,14 @@ const RoomDetailsComponent = (props) => {
                 aria-expanded="true"
               >
                 <div
-                  className="panel-body"
+                  className="panel-body box-shadowless"
                   style={{ padding: "0px 30px 5px 30px" }}
                 >
                   {props.teams.length ? (
                     props.teams.map((team) => (
-                      <div className="panel panel-default">
+                      <div className="panel panel-default box-shadowless">
                         <div
-                          className="panel-heading"
+                          className="panel-heading box-shadowless"
                           role="tab"
                           id={"headingOne" + team.id}
                         >
@@ -83,6 +76,7 @@ const RoomDetailsComponent = (props) => {
                                     onClick={() => {
                                       setSelectedEmployee(member);
                                       setSelectedTeam(team);
+                                      props.setShowMemberDetails(true);
                                     }}
                                   >
                                     <h4>
@@ -106,68 +100,61 @@ const RoomDetailsComponent = (props) => {
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col text-left">
-            <button
-              type="button"
-              className="btn btn-default"
-              onClick={props.onBack}
-            >
-              Atgal
-            </button>
-          </div>
-        </div>
       </div>
       <div className="col">
-        <h1>
-          <strong>Darbuotojo informacija</strong>
-        </h1>
-        {Object.keys(selectedEmployee).length > 0 ? (
+        {props.showMemberDetails ? (
           <div>
-            <div className="row">
-              <div className="col-3 text-left">
-                <h2>Vardas: </h2>
-              </div>
-              <div className="col-9 text-left">
-                <h2>{selectedEmployee.firstName}</h2>
-              </div>
+            <div>
+              <h2>
+                <strong>Darbuotojo informacija</strong>
+              </h2>
             </div>
-            <div className="row">
-              <div className="col-3 text-left">
-                <h2>Pavardė: </h2>
+            <div style={{ marginBottom: "40px" }}>
+              <div className="row">
+                <div className="col-3 text-left">
+                  <h3>Vardas: </h3>
+                </div>
+                <div className="col-9 text-left">
+                  <h3>{selectedEmployee.firstName}</h3>
+                </div>
               </div>
-              <div className="col-9 text-left">
-                <h2>{selectedEmployee.lastName}</h2>
+              <div className="row">
+                <div className="col-3 text-left">
+                  <h3>Pavardė: </h3>
+                </div>
+                <div className="col-9 text-left">
+                  <h3>{selectedEmployee.lastName}</h3>
+                </div>
               </div>
-            </div>
-            <div className="row">
-              <div className="col-3 text-left">
-                <h2>Projektas: </h2>
+              <div className="row">
+                <div className="col-3 text-left">
+                  <h3>Projektas: </h3>
+                </div>
+                <div className="col-9 text-left">
+                  <h3>{decorateTeamName(selectedTeam.name)}</h3>
+                </div>
               </div>
-              <div className="col-9 text-left">
-                <h2>{decorateTeamName(selectedTeam.name)}</h2>
+              <div className="row">
+                <div className="col-3 text-left">
+                  <h3>Sritis: </h3>
+                </div>
+                <div className="col-9 text-left">
+                  <h3>
+                    {selectedTeam.stack !== "" &&
+                    selectedTeam.stack !== null &&
+                    selectedTeam.stack !== undefined
+                      ? selectedTeam.stack
+                      : "-"}
+                  </h3>
+                </div>
               </div>
-            </div>
-            <div className="row">
-              <div className="col-3 text-left">
-                <h2>Sritis: </h2>
-              </div>
-              <div className="col-9 text-left">
-                <h2>
-                  {selectedTeam.stack !== "" &&
-                  selectedTeam.stack !== null &&
-                  selectedTeam.stack !== undefined
-                    ? selectedTeam.stack
-                    : "-"}
-                </h2>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-3 text-left">
-                <h2>Patirtis: </h2>
-              </div>
-              <div className="col-9 text-left">
-                <h2>0 m.</h2>
+              <div className="row">
+                <div className="col-3 text-left">
+                  <h3>Patirtis: </h3>
+                </div>
+                <div className="col-9 text-left">
+                  <h3>0 m.</h3>
+                </div>
               </div>
             </div>
           </div>

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static lt.lukasnakas.seatplanner.service.TeamService.TEAM_JOIN_DELIMITER;
 import static org.apache.commons.lang3.math.NumberUtils.max;
@@ -78,7 +79,7 @@ public class RoomService {
 
     public List<Room> findRoomsByFloor(String companyId, String officeId, String floorId) {
         CONSOLE_LOGGER.info("Fetching rooms in floor ID: " + floorId);
-        return floorService.findFloorById(companyId, officeId, floorId).getRoomList();
+        return floorService.findFloorById(companyId, officeId, floorId).getRoomList().stream().sorted().collect(Collectors.toList());
     }
 
     public Room findRoomById(String companyId, String officeId, String floorId, String roomId) {
@@ -106,6 +107,11 @@ public class RoomService {
                 .filter(room -> room.getLocation().getRoomNumb().equals(name))
                 .findFirst()
                 .orElseThrow();
+    }
+
+    public OverviewFloor findFloorByName(String companyId, String name) {
+        CONSOLE_LOGGER.info("Fetching room with name: " + name);
+        return floorService.findFloorByName(companyId, name);
     }
 
     public Room addRoom(AddRoomRequest addRoomRequest) {
@@ -164,7 +170,7 @@ public class RoomService {
         updatableTeam.setStack(editTeamRequest.getStack());
         updatableTeam.setName(editTeamRequest.getName());
         updatableTeam.setConditions(editTeamRequest.getCondition());
-        room.getTeams().remove(team);
+        room.getTeams().remove(teamIndex);
         room.getTeams().add(updatableTeam);
         overviewFloor.getRoomList().add(room);
         overviewOffice.getOverviewFloorList().add(overviewFloor);

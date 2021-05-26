@@ -3,9 +3,21 @@ import OfficeDropdown from "../dropdown/OfficeDropdown";
 import TeamDropdown from "../dropdown/TeamDropdown";
 import { Multiselect } from "multiselect-react-dropdown";
 import PlanningService from "../../services/PlanningService";
+import IncomingTransfersModal from "./IncomingTransfersModal";
 
 const AddTeamMembersComponent = (props) => {
-  const { submitToPlanner, teamlessMembers } = PlanningService(props);
+  const {
+    submitToPlanner,
+    correlationId,
+    setCorrelationId,
+    teamlessMembers,
+    confirmationState,
+    setConfirmationState,
+    confirmTransfer,
+    suggestions,
+    status,
+    updateTransfers,
+  } = PlanningService(props);
   const [teams, setTeams] = useState([]);
   const [selectedTeam, setSelectedTeam] = useState({});
   const [selectedOffice, setSelectedOffice] = useState({});
@@ -21,6 +33,9 @@ const AddTeamMembersComponent = (props) => {
   const [teamsInvolved, setTeamsInvolved] = useState(3);
   const [isSplittable, setSplittable] = useState(false);
   const [requestBody, setRequestBody] = useState({});
+  const [showIncomingTransfersModal, setShowIncomingTransfersModal] = useState(
+    false
+  );
 
   const resetTeamsDropdown = () => {
     setTeamDropdownValue("Pasirinkite komandą..");
@@ -66,6 +81,7 @@ const AddTeamMembersComponent = (props) => {
       companyId: props.companyId,
       officeId: selectedOffice.id,
     };
+    setShowIncomingTransfersModal(true);
     submitToPlanner(request);
   };
 
@@ -78,6 +94,18 @@ const AddTeamMembersComponent = (props) => {
 
   return (
     <div className="row" style={{ padding: "10px 0" }}>
+      <IncomingTransfersModal
+        show={showIncomingTransfersModal}
+        onHide={() => setShowIncomingTransfersModal(false)}
+        confirmTransfer={confirmTransfer}
+        companyId={props.companyId}
+        confirmationState={confirmationState}
+        setConfirmationState={setConfirmationState}
+        suggestions={suggestions}
+        status={status}
+        updateTransfers={updateTransfers}
+        correlationId={correlationId}
+      />
       <div className="col-4">
         <h2>Konfigūracija</h2>
         <div className="row">

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 const SuggestionService = (props) => {
   const baseUrl = "http://localhost:8080/v1/planner/";
-  const [data, setData] = useState([]);
+  const [confirmedSuggestions, setConfirmedSuggestions] = useState([]);
 
   useEffect(() => {
     fetchSuggestionsData();
@@ -14,12 +14,12 @@ const SuggestionService = (props) => {
       .get(baseUrl + "suggestions", { params: { companyId: props.companyId } })
       .then((response) => {
         if (response.data !== null) {
-          setData(response.data);
+          setConfirmedSuggestions(response.data);
         }
       });
   };
 
-  return { data };
+  return { confirmedSuggestions };
 };
 
 export default SuggestionService;

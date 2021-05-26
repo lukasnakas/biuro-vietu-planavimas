@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class OverviewFloor {
+public class OverviewFloor implements Comparable<OverviewFloor> {
 
     @BsonId
     private String id;
@@ -72,5 +72,10 @@ public class OverviewFloor {
     @Override
     public int hashCode() {
         return Objects.hash(id, floorName, roomList);
+    }
+
+    @Override
+    public int compareTo(OverviewFloor o) {
+        return this.getFloorName().compareTo(o.getFloorName());
     }
 }

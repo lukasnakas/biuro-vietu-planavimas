@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class OverviewOffice {
+public class OverviewOffice implements Comparable<OverviewOffice> {
 
     @BsonId
     private String id;
@@ -65,12 +65,18 @@ public class OverviewOffice {
             return false;
         }
         OverviewOffice that = (OverviewOffice) o;
-        return id.equals(that.id) && officeName.equals(that.officeName) && Objects
-                .equals(overviewFloorList, that.overviewFloorList);
+        return Objects.equals(id, that.id) && Objects
+                .equals(officeName, that.officeName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, officeName, overviewFloorList);
+        return Objects.hash(id, officeName);
+    }
+
+
+    @Override
+    public int compareTo(OverviewOffice o) {
+        return this.getOfficeName().compareTo(o.getOfficeName());
     }
 }

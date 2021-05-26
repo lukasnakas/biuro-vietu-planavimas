@@ -11,6 +11,7 @@ public class AddMemberRequest {
     private String lastName;
     private String email;
     private int experience;
+    private String teamName;
     private boolean teamless;
 
     public AddMemberRequest() {
@@ -86,6 +87,14 @@ public class AddMemberRequest {
 
     public void setExperience(int experience) {
         this.experience = experience;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 
     public boolean isTeamless() {

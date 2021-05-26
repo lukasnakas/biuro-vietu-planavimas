@@ -9,6 +9,7 @@ public class EditMemberRequest {
     private String email;
     private int experience;
     private boolean teamless;
+    private String teamName;
 
     public EditMemberRequest() {
     }
@@ -67,5 +68,13 @@ public class EditMemberRequest {
 
     public void setTeamless(boolean teamless) {
         this.teamless = teamless;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 }

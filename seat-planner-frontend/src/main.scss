@@ -38,11 +38,15 @@ body,
 }
 
 .scrollable-table {
-  max-height: 700px;
+  max-height: 600px;
   overflow: hidden;
   overflow-y: scroll;
 }
 
 .box-shadowless {
   box-shadow: none;
+}
+
+.suggestion-item:hover {
+  background-color: hsl(215, 39%, 77%);
 }

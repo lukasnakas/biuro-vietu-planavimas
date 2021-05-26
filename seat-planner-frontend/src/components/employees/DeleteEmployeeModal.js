@@ -1,6 +1,22 @@
+import { useState } from "react";
+
 const DeleteEmployeeModal = (props) => {
+  const [deleteHappened, setDeleteHappened] = useState(false);
+
   const deleteSelectedEmployee = (event) => {
-    console.log(event);
+    props.deleteEmployee(props.selectedEmployeeData.id, props.companyId);
+    setDeleteHappened(true);
+  };
+
+  const handleOkay = () => {
+    if (props.deleteState === "success") {
+      setDeleteHappened(false);
+      props.setDeleteState("");
+      props.fetchEmployeeData();
+      props.onHide();
+    } else {
+      setDeleteHappened(false);
+    }
   };
 
   return (
@@ -17,16 +33,36 @@ const DeleteEmployeeModal = (props) => {
           <div className="modal-header" style={{ border: "none" }}>
             <div className="row w-100 no-gutters">
               <div className="col text-center">
-                <h4 id="modal-title" className="modal-title">
-                  Ištrinti darbuotojo duomenis
-                </h4>
+                {deleteHappened ? (
+                  <div></div>
+                ) : (
+                  <h4 id="modal-title" className="modal-title">
+                    Ištrinti darbuotojo duomenis
+                  </h4>
+                )}
               </div>
             </div>
           </div>
           <div className="modal-body">
             <div className="row w-100 no-gutters">
               <div className="col">
-                <h3>Ar tikrai norite ištrinti šio darbuotojo duomenis?</h3>
+                {deleteHappened ? (
+                  props.deleteState === "success" ? (
+                    <div className="alert alert-success" role="alert">
+                      <strong>Užklausa atlikta sėkmingai!</strong> Darbuotojo
+                      duomenys pašalinti.
+                    </div>
+                  ) : props.deleteState === "failed" ? (
+                    <div className="alert alert-danger" role="alert">
+                      <strong>Užklausos atlikti nepavyko!</strong> Darbuotojo
+                      duomenys nebuvo pašalinti.
+                    </div>
+                  ) : (
+                    <div></div>
+                  )
+                ) : (
+                  <h3>Ar tikrai norite ištrinti šio darbuotojo duomenis?</h3>
+                )}
               </div>
             </div>
           </div>
@@ -34,30 +70,46 @@ const DeleteEmployeeModal = (props) => {
             className="modal-footer"
             style={{ border: "none", paddingBottom: "10px" }}
           >
-            <div className="row w-100 no-gutters">
-              <div className="col">
-                <button
-                  type="button"
-                  className="btn btn-default"
-                  data-toggle="modal"
-                  data-target="modal-employee-delete"
-                  onClick={props.onHide}
-                >
-                  Atšaukti
-                </button>
+            {deleteHappened ? (
+              <div className="row w-100 no-gutters">
+                <div className="col">
+                  <button
+                    type="button"
+                    className="btn btn-default"
+                    data-toggle="modal"
+                    data-target="modal-employee-update"
+                    onClick={() => handleOkay()}
+                  >
+                    Gerai
+                  </button>
+                </div>
               </div>
-              <div className="col">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  data-toggle="modal"
-                  data-target="modal-employee-delete"
-                  onClick={deleteSelectedEmployee}
-                >
-                  Patvirtinti
-                </button>
+            ) : (
+              <div className="row w-100 no-gutters">
+                <div className="col">
+                  <button
+                    type="button"
+                    className="btn btn-default"
+                    data-toggle="modal"
+                    data-target="modal-employee-delete"
+                    onClick={() => props.onHide()}
+                  >
+                    Atšaukti
+                  </button>
+                </div>
+                <div className="col">
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    data-toggle="modal"
+                    data-target="modal-employee-delete"
+                    onClick={deleteSelectedEmployee}
+                  >
+                    Patvirtinti
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

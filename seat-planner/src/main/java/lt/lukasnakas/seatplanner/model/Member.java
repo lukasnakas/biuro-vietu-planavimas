@@ -3,7 +3,7 @@ package lt.lukasnakas.seatplanner.model;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Member {
+public class Member implements Comparable<Member> {
 
     private String id;
     private String memberCode;
@@ -12,6 +12,7 @@ public class Member {
     private String email;
     private String stack;
     private int experience;
+    private String teamName;
 
     public Member(String firstName, String lastName) {
         this();
@@ -85,6 +86,14 @@ public class Member {
         this.experience = experience;
     }
 
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -104,5 +113,12 @@ public class Member {
     @Override
     public int hashCode() {
         return Objects.hash(id, memberCode, firstName, lastName, email, stack, experience);
+    }
+
+    @Override
+    public int compareTo(Member o) {
+        String member1 = this.getFirstName() + " " + this.getLastName();
+        String member2 = o.getFirstName() + " " + o.getLastName();
+        return member1.compareTo(member2);
     }
 }

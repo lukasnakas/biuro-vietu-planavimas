@@ -49,6 +49,9 @@ const OfficeDropdown = (props) => {
         allTeams = allTeams.concat(room.teams);
       });
     });
+    allTeams.sort((obj1, obj2) =>
+      obj1.name > obj2.name ? 1 : obj2.name > obj1.name ? -1 : 0
+    );
     return allTeams;
   };
 
@@ -78,17 +81,19 @@ const OfficeDropdown = (props) => {
         aria-labelledby="dropdown-office-button"
       >
         {props.offices.length ? (
-          props.offices.map((office) => (
-            <li role="menuitem" key={office.officeName}>
-              <a
-                href="#"
-                id={"dropdown-basic-button-" + office.officeName}
-                onClick={handleOfficeSelect}
-              >
-                {office.officeName}
-              </a>
-            </li>
-          ))
+          props.offices
+            .filter((office) => office.officeName !== "no_team")
+            .map((office) => (
+              <li role="menuitem" key={office.officeName}>
+                <a
+                  href="#"
+                  id={"dropdown-basic-button-" + office.officeName}
+                  onClick={handleOfficeSelect}
+                >
+                  {office.officeName}
+                </a>
+              </li>
+            ))
         ) : (
           <li role="menuitem" key="nodata">
             <a

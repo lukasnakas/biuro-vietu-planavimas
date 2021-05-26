@@ -30,6 +30,11 @@ public class TeamController {
         return ResponseEntity.ok(teamService.findTeamsByRoom(companyId, officeId, floorId, roomId));
     }
 
+    @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Team>> getAllTeamNames(@RequestParam String companyId) {
+        return ResponseEntity.ok(teamService.findAllTeamsByCompany(companyId));
+    }
+
     @GetMapping(value = "/{teamId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Team> getTeam(@RequestParam String officeId, @PathVariable String teamId, @RequestParam String companyId, @RequestParam String floorId, @RequestParam String roomId) {
         return ResponseEntity.ok(teamService.findRoomTeamById(companyId, officeId, floorId, roomId, teamId));
@@ -38,16 +43,12 @@ public class TeamController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Team> addTeam(@RequestBody AddTeamRequest addTeamRequest) {
         Team team = teamService.addTeam(addTeamRequest);
-        List<Team> allTeams = teamService.getAllTeams();
-        teamRestrictionService.createTeamRestrictionsByTeams(addTeamRequest.getCompanyId(), addTeamRequest.getOfficeId(), allTeams);
         return ResponseEntity.ok(team);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Team> editTeam(@RequestBody EditTeamRequest editTeamRequest) {
         Team team = teamService.editTeam(editTeamRequest);
-        List<Team> allTeams = teamService.getAllTeams();
-        teamRestrictionService.createTeamRestrictionsByTeams(editTeamRequest.getCompanyId(), editTeamRequest.getOfficeId(), allTeams);
         return ResponseEntity.ok(team);
     }
 

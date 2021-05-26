@@ -32,7 +32,8 @@ const RoomDropdown = (props) => {
       props.setTeams(currentRoom.teams);
       props.setSelectedRoom(currentRoom.location.roomNumb);
       props.resetLowerDropdowns();
-      props.setMoreDetailButtonDisabled(false);
+      props.setShowMemberDetails(false);
+      props.setShowRoomDetails(true);
     }
     setDropdownMenuActive(false);
   };

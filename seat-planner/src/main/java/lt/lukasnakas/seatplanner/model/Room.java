@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Room {
+public class Room implements Comparable<Room> {
 
     @PlanningId
     private String id;
@@ -92,4 +92,8 @@ public class Room {
         return Objects.hash(id, location, maxCapacity, currentCapacity, teams);
     }
 
+    @Override
+    public int compareTo(Room o) {
+        return this.getLocation().getRoomNumb().compareTo(o.getLocation().getRoomNumb());
+    }
 }

@@ -50,28 +50,32 @@ const Header = (props) => {
                 </li>
               )}
             </Route>
-            <Route path="/plan">
-              {({ match }) => (
-                <li className={match ? "active" : undefined}>
-                  <NavLink id="planPage" activeClassName="active" to="/plan">
-                    <span>{"Planavimas"}</span>
-                  </NavLink>
-                </li>
-              )}
-            </Route>
-            <Route path="/employees">
-              {({ match }) => (
-                <li className={match ? "active" : undefined}>
-                  <NavLink
-                    id="empPage"
-                    activeClassName="active"
-                    to="/employees"
-                  >
-                    <span>{"Darbuotojai"}</span>
-                  </NavLink>
-                </li>
-              )}
-            </Route>
+            {props.isAdmin ? (
+              <Route path="/plan">
+                {({ match }) => (
+                  <li className={match ? "active" : undefined}>
+                    <NavLink id="planPage" activeClassName="active" to="/plan">
+                      <span>{"Planavimas"}</span>
+                    </NavLink>
+                  </li>
+                )}
+              </Route>
+            ) : undefined}
+            {props.isAdmin ? (
+              <Route path="/employees">
+                {({ match }) => (
+                  <li className={match ? "active" : undefined}>
+                    <NavLink
+                      id="empPage"
+                      activeClassName="active"
+                      to="/employees"
+                    >
+                      <span>{"Darbuotojai"}</span>
+                    </NavLink>
+                  </li>
+                )}
+              </Route>
+            ) : undefined}
             {props.isAdmin ? (
               <Route path="/offices">
                 {({ match }) => (

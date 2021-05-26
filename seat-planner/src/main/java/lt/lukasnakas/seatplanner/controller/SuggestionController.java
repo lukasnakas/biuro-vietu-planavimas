@@ -26,7 +26,7 @@ public class SuggestionController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Suggestion>> getSuggestions(@RequestParam String companyId) {
-        return ok(suggestionService.getSuggestions(companyId));
+        return ok(suggestionService.getConfirmedSuggestions(companyId));
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -2,6 +2,7 @@ package lt.lukasnakas.seatplanner.model;
 
 import lt.lukasnakas.seatplanner.model.enumerators.State;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -14,6 +15,7 @@ public class Suggestion {
     private State state;
     private List<Transfer> transfers;
     private List<String> violatedConstraints;
+    private Date date;
 
     public Suggestion(int priority, int teamsInvolved, List<Transfer> transfers, List<String> violatedConstraints) {
         this.id = UUID.randomUUID().toString();
@@ -75,6 +77,14 @@ public class Suggestion {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override

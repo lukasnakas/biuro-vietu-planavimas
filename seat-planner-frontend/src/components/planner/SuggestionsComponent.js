@@ -1,86 +1,53 @@
 import SuggestionService from "services/SuggestionService";
 
 const SuggestionsComponent = (props) => {
-  const transfers = [
-    { id: "transfer1", from: "6.01", to: "6.02", personAmount: 5 },
-    { id: "transfer2", from: "6.03", to: "6.04", personAmount: 3 },
-    { id: "transfer3", from: "6.08", to: "6.09", personAmount: 6 },
-    { id: "transfer4", from: "6.10", to: "6.11", personAmount: 2 },
-  ];
-  const { data } = SuggestionService(props);
+  const { confirmedSuggestions } = SuggestionService(props);
+
+  const getMoveFrom = (moveTo) => {
+    return moveTo.split("-->")[0].split("_").join(" > ");
+  };
+
+  const getMoveTo = (moveTo) => {
+    return moveTo.split("-->")[1].split("_").join(" > ");
+  };
 
   return (
     <div className="row" style={{ padding: "10px 0" }}>
-      {console.log(data)}
       <div className="col text-left">
         <h2>Patvirtinti persodinimo pasiūlymai</h2>
         <div className="scrollable-expanded-list">
-          <div
-            className="panel panel-default box-shadowless"
-            style={{
-              paddingTop: "0px",
-              paddingLeft: "10px",
-              paddingBottom: "10px",
-            }}
-          >
-            <div
-              id="collapseOne"
-              className="panel-collapse in"
-              role="tabpanel"
-              aria-expanded="true"
-            >
-              <div
-                className="panel-body"
-                style={{ padding: "0px 30px 5px 30px" }}
-              >
-                {transfers.length ? (
-                  transfers.map((transfer) => (
-                    <div className="panel panel-default box-shadowless">
-                      <div
-                        className="panel-heading"
-                        role="tab"
-                        id={"headingOne" + transfer.id}
-                      >
-                        <h4 className="panel-title">
-                          <a
-                            data-toggle="collapse"
-                            data-parent="#collapseOne"
-                            href={"#collapseOne" + transfer.id}
-                            aria-expanded="false"
-                            aria-controls={"collapseOne" + transfer.id}
-                            className="collapsed"
-                            style={{ textDecoration: "none" }}
-                          >
-                            <span className="caret"></span>
-                            {transfer.id}
-                          </a>
-                        </h4>
-                      </div>
-                      <div
-                        id={"collapseOne" + transfer.id}
-                        className="panel-collapse collapse"
-                        role="tabpanel"
-                        aria-labelledby={"headingOne" + transfer.id}
-                        aria-expanded="false"
-                        aria-hidden="true"
-                      >
-                        <div className="panel-body">
-                          <div className="col" style={{ padding: "5px 30px" }}>
-                            <h4>Iš: {transfer.from}</h4>
-                            <h4>Į: {transfer.to}</h4>
-                            <h4>
-                              Perkeltų žmonių kiekis: {transfer.personAmount}
-                            </h4>
-                          </div>
+          <div className="col text-left scrollable-expanded-list">
+            {confirmedSuggestions.length > 0 ? (
+              confirmedSuggestions.map((suggestion) => (
+                <div
+                  key={suggestion.id}
+                  style={{ margin: "20px 0px 20px 0px" }}
+                >
+                  {console.log(suggestion)}
+                  <h3 style={{ marginBottom: "5px" }}>
+                    Pasiūlymo ID: {suggestion.id}
+                  </h3>
+                  <h4>Patvirtinimo data: {suggestion.date}</h4>
+                  <div className="row">
+                    {suggestion.transfers.map((transfer) => {
+                      return (
+                        <div className="col" key={transfer.teamName}>
+                          <h4>Komanda: {transfer.teamName}</h4>
+                          <h4>Iš: {getMoveFrom(transfer.moveTo)}</h4>
+                          <h4>Į: {getMoveTo(transfer.moveTo)}</h4>
+                          <h4>
+                            Perkeltų darbuotojų kiekis:{" "}
+                            {transfer.peopleTransferredAmount}
+                          </h4>
                         </div>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <h4>Nerasta komandų duomenų</h4>
-                )}
-              </div>
-            </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <h4></h4>
+            )}
           </div>
         </div>
       </div>

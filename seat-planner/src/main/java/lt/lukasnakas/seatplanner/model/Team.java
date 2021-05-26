@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @PlanningEntity
-public class Team {
+public class Team implements Comparable<Team> {
 
     @PlanningId
     private String id;
@@ -129,4 +129,8 @@ public class Team {
         return Objects.hash(id, size, members, name, stack, isSplit, conditions);
     }
 
+    @Override
+    public int compareTo(Team o) {
+        return this.getName().compareTo(o.getName());
+    }
 }

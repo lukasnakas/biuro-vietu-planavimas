@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OfficeService {
@@ -44,7 +45,7 @@ public class OfficeService {
 
     public List<OverviewOffice> findOffices(String companyId) {
         CONSOLE_LOGGER.info("Fetching offices in company ID: " + companyId);
-        return companyService.findCompanyById(companyId).getOfficeList();
+        return companyService.findCompanyById(companyId).getOfficeList().stream().sorted().collect(Collectors.toList());
     }
 
     public Collection<String> getOfficeNames(String companyId) {

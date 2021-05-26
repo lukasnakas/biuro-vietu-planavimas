@@ -41,7 +41,7 @@ public class TeamService {
 
     public List<Team> findTeamsByRoom(String companyId, String officeId, String floorId, String roomId) {
         CONSOLE_LOGGER.info("Fetching teams in room ID: " + roomId);
-        return roomService.findRoomById(companyId, officeId, floorId, roomId).getTeams();
+        return roomService.findRoomById(companyId, officeId, floorId, roomId).getTeams().stream().sorted().collect(Collectors.toList());
     }
 
     public Team findRoomTeamById(String companyId, String officeId, String floorId, String roomId, String teamId) {
@@ -60,6 +60,11 @@ public class TeamService {
                 .filter(team -> team.getName().equals(name))
                 .findFirst()
                 .orElseThrow();
+    }
+
+    public Room findRoomByName(String companyId, String name) {
+        CONSOLE_LOGGER.info("Fetching team with name: " + name);
+        return roomService.findRoomByName(companyId, name);
     }
 
     public Team addTeam(AddTeamRequest addTeamRequest) {
@@ -100,19 +105,35 @@ public class TeamService {
         return allTeams;
     }
 
+    public List<Team> getAllTeamsByCompany(String companyId) {
+        List<Team> allTeams = new ArrayList<>();
+        roomService.findCompanyById(companyId).getOfficeList().forEach(
+                o -> o.getOverviewFloorList().forEach(
+                        floor -> floor.getRoomList().forEach(
+                                r -> allTeams.addAll(r.getTeams())
+                        )
+                )
+        );
+        return allTeams;
+    }
+
     public Room addMember(AddMemberRequest addMemberRequest, Member member) {
         Company company = roomService.findCompanyById(addMemberRequest.getCompanyId());
-        OverviewOffice overviewOffice = roomService.findOfficeById(company.getId(), addMemberRequest.getOfficeId());
-        OverviewFloor overviewFloor = roomService.findFloorById(company.getId(), overviewOffice.getId(), addMemberRequest.getFloorId());
-        Room room = roomService.findRoomById(company.getId(), overviewOffice.getId(), overviewFloor.getId(), addMemberRequest.getRoomId());
-
+        OverviewOffice overviewOffice;
+        OverviewFloor overviewFloor;
+        Room room;
         Team team;
+
         if (addMemberRequest.isTeamless()) {
-            team = findAllTeams().stream()
-                .filter(t -> t.getName().equals("no_team"))
-                .findFirst().orElse(new Team(1000, null, new ArrayList<>(), "no_team", "", false, ""));
+            overviewOffice = roomService.findOfficeByName(company.getId(), "no_team");
+            overviewFloor = roomService.findFloorByName(company.getId(), "no_team");
+            room = roomService.findRoomByName(company.getId(), "no_team");
+            team = findRoomTeamByName(company.getId(), "no_team");
         } else {
-            team = findRoomTeamById(company.getId(), overviewOffice.getId(), overviewFloor.getId(), room.getId(), addMemberRequest.getTeamId());
+            team = findAllTeamsByCompany(company.getId()).stream().filter(t -> t.getName().equals(addMemberRequest.getTeamName())).findFirst().orElseThrow();
+            room = roomService.findAllRooms().stream().filter(r -> r.getTeams().contains(team)).findFirst().orElseThrow();
+            overviewFloor = roomService.findAllFloors().stream().filter(f -> f.getRoomList().contains(room)).findFirst().orElseThrow();
+            overviewOffice = roomService.findAllOffices().stream().filter(o -> o.getOverviewFloorList().contains(overviewFloor)).findFirst().orElseThrow();
         }
 
         if (room.getCurrentCapacity() + 1 <= room.getMaxCapacity()) {
@@ -139,6 +160,173 @@ public class TeamService {
 
     public Member editMember(Member member, EditMemberRequest editMemberRequest) {
         Team team = findAllTeams().stream().filter(t -> t.getMembers().contains(member)).findFirst().orElseThrow();
+        if (!editMemberRequest.getTeamName().equals(team.getName())) {
+            return editMemberChangeTeam(team, member, editMemberRequest);
+        } else {
+            return editMemberSameTeam(team, member, editMemberRequest);
+        }
+    }
+
+    private Member editMemberChangeTeam(Team team, Member member, EditMemberRequest editMemberRequest) {
+        Company company = roomService.findCompanyById(editMemberRequest.getCompanyId());
+        Team teamToMove = getAllTeamsByCompany(editMemberRequest.getCompanyId())
+                .stream()
+                .filter(t -> t.getName().equals(editMemberRequest.getTeamName()))
+                .findFirst().orElseThrow();
+
+        int memberIndex = team.getMembers().indexOf(member);
+        Member updatableMember = team.getMembers().get(memberIndex);
+
+        Room room = roomService.findAllRooms().stream().filter(r -> r.getTeams().contains(team)).findFirst().orElseThrow();
+        OverviewFloor overviewFloor = roomService.findAllFloors().stream().filter(f -> f.getRoomList().contains(room)).findFirst().orElseThrow();
+        OverviewOffice overviewOffice = roomService.findAllOffices().stream().filter(o -> o.getOverviewFloorList().contains(overviewFloor)).findFirst().orElseThrow();
+        int officeFromMoveIndex = company.getOfficeList().indexOf(overviewOffice);
+        int floorFromMoveIndex = overviewOffice.getOverviewFloorList().indexOf(overviewFloor);
+        int roomFromMoveIndex = overviewFloor.getRoomList().indexOf(room);
+
+        Room roomToMove = roomService.findAllRooms().stream().filter(r -> r.getTeams().contains(teamToMove)).findFirst().orElseThrow();
+        OverviewFloor overviewFloorToMove = roomService.findAllFloors().stream().filter(f -> f.getRoomList().contains(roomToMove)).findFirst().orElseThrow();
+        OverviewOffice overviewOfficeToMove = roomService.findAllOffices().stream().filter(o -> o.getOverviewFloorList().contains(overviewFloorToMove)).findFirst().orElseThrow();
+        int officeToMoveIndex = company.getOfficeList().indexOf(overviewOfficeToMove);
+        int floorToMoveIndex = overviewOfficeToMove.getOverviewFloorList().indexOf(overviewFloorToMove);
+        int roomToMoveIndex = overviewFloorToMove.getRoomList().indexOf(roomToMove);
+
+        if (roomToMove.getCurrentCapacity() + 1 <= roomToMove.getMaxCapacity()) {
+            if (officeFromMoveIndex == officeToMoveIndex) {
+                if (floorFromMoveIndex == floorToMoveIndex) {
+                    overviewOffice.getOverviewFloorList().remove(overviewFloor);
+                    if (roomFromMoveIndex == roomToMoveIndex) {
+                        company.getOfficeList().remove(overviewOffice);
+                        overviewOffice.getOverviewFloorList().remove(overviewFloor);
+                        overviewFloor.getRoomList().remove(room);
+
+                        room.getTeams().remove(team);
+                        team.getMembers().remove(memberIndex);
+                        team.setSize(team.getSize() - 1);
+
+                        updatableMember.setEmail(editMemberRequest.getEmail());
+                        updatableMember.setExperience(editMemberRequest.getExperience());
+                        updatableMember.setFirstName(editMemberRequest.getFirstName());
+                        updatableMember.setLastName(editMemberRequest.getLastName());
+                        updatableMember.setStack(teamToMove.getStack());
+
+                        teamToMove.getMembers().add(updatableMember);
+                        teamToMove.setSize(teamToMove.getSize() + 1);
+                        room.getTeams().add(teamToMove);
+
+                        overviewFloor.getRoomList().add(room);
+                        overviewOffice.getOverviewFloorList().add(overviewFloor);
+                        company.getOfficeList().add(overviewOffice);
+                    } else {
+                        company.getOfficeList().remove(overviewOffice);
+                        overviewOffice.getOverviewFloorList().remove(overviewFloor);
+
+                        overviewFloor.getRoomList().remove(room);
+                        overviewFloor.getRoomList().remove(roomToMove);
+
+                        room.getTeams().remove(team);
+                        team.getMembers().remove(memberIndex);
+                        team.setSize(team.getSize() - 1);
+                        room.getTeams().add(team);
+                        room.setCurrentCapacity(room.getCurrentCapacity() - 1);
+
+                        updatableMember.setEmail(editMemberRequest.getEmail());
+                        updatableMember.setExperience(editMemberRequest.getExperience());
+                        updatableMember.setFirstName(editMemberRequest.getFirstName());
+                        updatableMember.setLastName(editMemberRequest.getLastName());
+                        updatableMember.setStack(teamToMove.getStack());
+
+                        roomToMove.getTeams().remove(teamToMove);
+                        teamToMove.getMembers().add(updatableMember);
+                        teamToMove.setSize(teamToMove.getSize() + 1);
+                        roomToMove.getTeams().add(teamToMove);
+                        roomToMove.setCurrentCapacity(roomToMove.getCurrentCapacity() + 1);
+
+                        overviewFloor.getRoomList().add(room);
+                        overviewFloor.getRoomList().add(roomToMove);
+
+                        overviewOffice.getOverviewFloorList().add(overviewFloor);
+                        company.getOfficeList().add(overviewOffice);
+                    }
+                } else {
+                    company.getOfficeList().remove(overviewOffice);
+
+                    overviewOffice.getOverviewFloorList().remove(floorFromMoveIndex);
+                    overviewOffice.getOverviewFloorList().remove(floorToMoveIndex);
+
+                    overviewFloor.getRoomList().remove(roomFromMoveIndex);
+                    overviewFloorToMove.getRoomList().remove(roomToMoveIndex);
+
+                    room.getTeams().remove(team);
+                    team.getMembers().remove(memberIndex);
+                    team.setSize(team.getSize() - 1);
+                    room.getTeams().add(team);
+                    room.setCurrentCapacity(room.getCurrentCapacity() - 1);
+
+                    updatableMember.setEmail(editMemberRequest.getEmail());
+                    updatableMember.setExperience(editMemberRequest.getExperience());
+                    updatableMember.setFirstName(editMemberRequest.getFirstName());
+                    updatableMember.setLastName(editMemberRequest.getLastName());
+                    updatableMember.setStack(teamToMove.getStack());
+
+                    roomToMove.getTeams().remove(teamToMove);
+                    teamToMove.getMembers().add(updatableMember);
+                    teamToMove.setSize(teamToMove.getSize() + 1);
+                    roomToMove.getTeams().add(teamToMove);
+                    roomToMove.setCurrentCapacity(roomToMove.getCurrentCapacity() + 1);
+
+                    overviewFloor.getRoomList().add(room);
+                    overviewFloorToMove.getRoomList().add(roomToMove);
+
+                    overviewOffice.getOverviewFloorList().add(overviewFloor);
+                    overviewOffice.getOverviewFloorList().add(overviewFloorToMove);
+
+                    company.getOfficeList().add(overviewOffice);
+                }
+            } else {
+                company.getOfficeList().remove(officeFromMoveIndex);
+                company.getOfficeList().remove(officeToMoveIndex);
+                overviewOffice.getOverviewFloorList().remove(floorFromMoveIndex);
+                overviewOfficeToMove.getOverviewFloorList().remove(floorToMoveIndex);
+
+                overviewFloor.getRoomList().remove(roomFromMoveIndex);
+                overviewFloorToMove.getRoomList().remove(roomToMoveIndex);
+
+                room.getTeams().remove(team);
+                team.getMembers().remove(memberIndex);
+                team.setSize(team.getSize() - 1);
+                room.getTeams().add(team);
+                room.setCurrentCapacity(room.getCurrentCapacity() - 1);
+
+                updatableMember.setEmail(editMemberRequest.getEmail());
+                updatableMember.setExperience(editMemberRequest.getExperience());
+                updatableMember.setFirstName(editMemberRequest.getFirstName());
+                updatableMember.setLastName(editMemberRequest.getLastName());
+                updatableMember.setStack(teamToMove.getStack());
+
+                roomToMove.getTeams().remove(teamToMove);
+                teamToMove.getMembers().add(updatableMember);
+                teamToMove.setSize(teamToMove.getSize() + 1);
+                roomToMove.getTeams().add(teamToMove);
+                roomToMove.setCurrentCapacity(roomToMove.getCurrentCapacity() + 1);
+
+                overviewFloor.getRoomList().add(room);
+                overviewFloorToMove.getRoomList().add(roomToMove);
+
+                overviewOffice.getOverviewFloorList().add(overviewFloor);
+                overviewOfficeToMove.getOverviewFloorList().add(overviewFloorToMove);
+                company.getOfficeList().add(overviewOffice);
+                company.getOfficeList().add(overviewOfficeToMove);
+            }
+
+            roomService.saveUpdatedCompany(company);
+            return updatableMember;
+        } else {
+            throw new RoomMaxCapacityExceededException("Member does not fit in team's room");
+        }
+    }
+
+    private Member editMemberSameTeam(Team team, Member member, EditMemberRequest editMemberRequest) {
         Room room = roomService.findAllRooms().stream().filter(r -> r.getTeams().contains(team)).findFirst().orElseThrow();
         OverviewFloor overviewFloor = roomService.findAllFloors().stream().filter(f -> f.getRoomList().contains(room)).findFirst().orElseThrow();
         OverviewOffice overviewOffice = roomService.findAllOffices().stream().filter(o -> o.getOverviewFloorList().contains(overviewFloor)).findFirst().orElseThrow();
@@ -230,6 +418,18 @@ public class TeamService {
                                 )
                         )));
         return teamsInRooms;
+    }
+
+    public List<Team> findAllTeamsByCompany(String companyId) {
+        CONSOLE_LOGGER.info("Fetching all teams in company ID: " + companyId);
+        List<Team> allTeams = new ArrayList<>();
+        roomService.findCompanyById(companyId).getOfficeList().forEach(
+                overviewOffice -> overviewOffice.getOverviewFloorList().forEach(
+                        overviewFloor -> overviewFloor.getRoomList().forEach(
+                                room -> allTeams.addAll(room.getTeams())
+                        )
+                ));
+        return allTeams;
     }
 
     public void relocateTeams(String companyId, Suggestion suggestion) {

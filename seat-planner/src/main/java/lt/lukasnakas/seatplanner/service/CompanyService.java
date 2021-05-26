@@ -87,6 +87,7 @@ public class CompanyService {
                 .findFirst()
                 .orElseThrow();
         company.getOfficeList().remove(overviewOffice);
+        companyRepository.save(company);
     }
 
 }

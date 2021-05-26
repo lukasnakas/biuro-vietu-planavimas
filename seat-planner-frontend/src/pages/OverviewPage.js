@@ -26,10 +26,8 @@ const OverviewPage = (props) => {
   const [teamDropdownValue, setTeamDropdownValue] = useState(
     "Pasirinkite komandą.."
   );
-  const [isMoreDetailButtonDisabled, setMoreDetailButtonDisabled] = useState(
-    true
-  );
   const [showRoomDetails, setShowRoomDetails] = useState(false);
+  const [showMemberDetails, setShowMemberDetails] = useState(false);
 
   const getSelectedLocationPath = () => {
     let selectedLocationPath = "";
@@ -58,7 +56,7 @@ const OverviewPage = (props) => {
     setRoomDropdownValue("Pasirinkite kabinetą..");
     setTeams([]);
     setSelectedRoom({});
-    setMoreDetailButtonDisabled(true);
+    setShowRoomDetails(false);
   };
 
   const resetTeamsDropdown = () => {
@@ -81,124 +79,113 @@ const OverviewPage = (props) => {
           <div className="col my-auto">
             <div className="page-container rounded-20">
               {props.isLoggedIn ? (
-                showRoomDetails ? (
-                  <RoomDetailsComponent
-                    onBack={hideMoreDetailsComponent}
-                    selectedRoom={selectedRoom}
-                    selectedLocationPath={getSelectedLocationPath()}
-                    teams={teams}
-                  />
-                ) : (
-                  <div className="row">
-                    <div className="col-4">
-                      <h1>Nustatymai</h1>
-                      <div className="row">
-                        <div className="col">
-                          <div className="row">
-                            <div className="col text-left">
-                              <label
-                                htmlFor="officeDropdown"
-                                className="control-label"
-                              >
-                                Biuras
-                              </label>
-                            </div>
-                          </div>
-                          <div className="row">
-                            <div className="col">
-                              <OfficeDropdown
-                                dropdownValue={officeDropdownValue}
-                                dropdownSetter={setOfficeDropdownValue}
-                                offices={data}
-                                setFloors={setFloors}
-                                setSelectedOffice={setSelectedOffice}
-                                resetLowerDropdowns={resetFloorsDropdown}
-                                screen="overview"
-                              />
-                            </div>
+                <div className="row">
+                  <div className="col-4">
+                    <h1>Nustatymai</h1>
+                    <div className="row">
+                      <div className="col">
+                        <div className="row">
+                          <div className="col text-left">
+                            <label
+                              htmlFor="officeDropdown"
+                              className="control-label"
+                            >
+                              Biuras
+                            </label>
                           </div>
                         </div>
-                      </div>
-                      <div className="row">
-                        <div className="col">
-                          <div className="row">
-                            <div className="col text-left">
-                              <label
-                                htmlFor="floorDropdown"
-                                className="control-label"
-                              >
-                                Aukštas
-                              </label>
-                            </div>
+                        <div className="row">
+                          <div className="col">
+                            <OfficeDropdown
+                              dropdownValue={officeDropdownValue}
+                              dropdownSetter={setOfficeDropdownValue}
+                              offices={data}
+                              setFloors={setFloors}
+                              setSelectedOffice={setSelectedOffice}
+                              resetLowerDropdowns={resetFloorsDropdown}
+                              screen="overview"
+                            />
                           </div>
-                          <div className="row">
-                            <div className="col">
-                              <FloorDropdown
-                                dropdownValue={floorDropdownValue}
-                                dropdownSetter={setFloorDropdownValue}
-                                floors={floors}
-                                setRooms={setRooms}
-                                setSelectedFloor={setSelectedFloor}
-                                resetLowerDropdowns={resetRoomsDropdown}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col">
-                          <div className="row">
-                            <div className="col text-left">
-                              <label
-                                htmlFor="roomDropdown"
-                                className="control-label"
-                              >
-                                Kabinetas
-                              </label>
-                            </div>
-                          </div>
-                          <div className="row">
-                            <div className="col">
-                              <RoomDropdown
-                                dropdownValue={roomDropdownValue}
-                                dropdownSetter={setRoomDropdownValue}
-                                rooms={rooms}
-                                setTeams={setTeams}
-                                setSelectedRoom={setSelectedRoom}
-                                resetLowerDropdowns={resetTeamsDropdown}
-                                setMoreDetailButtonDisabled={
-                                  setMoreDetailButtonDisabled
-                                }
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="row" style={{ marginTop: "20px" }}>
-                        <div className="col">
-                          <button
-                            className="btn btn-primary"
-                            type="button"
-                            disabled={isMoreDetailButtonDisabled}
-                            onClick={showMoreDetailsComponent}
-                          >
-                            Daugiau informacijos
-                          </button>
                         </div>
                       </div>
                     </div>
-                    <div className="col-8">
-                      <div className="row justify-content-center">
-                        <h1>{getSelectedLocationPath()}</h1>
+                    <div className="row">
+                      <div className="col">
+                        <div className="row">
+                          <div className="col text-left">
+                            <label
+                              htmlFor="floorDropdown"
+                              className="control-label"
+                            >
+                              Aukštas
+                            </label>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col">
+                            <FloorDropdown
+                              dropdownValue={floorDropdownValue}
+                              dropdownSetter={setFloorDropdownValue}
+                              floors={floors}
+                              setRooms={setRooms}
+                              setSelectedFloor={setSelectedFloor}
+                              resetLowerDropdowns={resetRoomsDropdown}
+                            />
+                          </div>
+                        </div>
                       </div>
-                      <div className="row h-100 justify-content-center">
-                        <div className="col my-auto">
-                          <h1>Pasirinkite biurą ir aukštą...</h1>
+                    </div>
+                    <div className="row">
+                      <div className="col">
+                        <div className="row">
+                          <div className="col text-left">
+                            <label
+                              htmlFor="roomDropdown"
+                              className="control-label"
+                            >
+                              Kabinetas
+                            </label>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col">
+                            <RoomDropdown
+                              dropdownValue={roomDropdownValue}
+                              dropdownSetter={setRoomDropdownValue}
+                              rooms={rooms}
+                              setTeams={setTeams}
+                              setSelectedRoom={setSelectedRoom}
+                              resetLowerDropdowns={resetTeamsDropdown}
+                              setShowRoomDetails={setShowRoomDetails}
+                              setShowMemberDetails={setShowMemberDetails}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                )
+                  <div className="col-8">
+                    <div className="row justify-content-center">
+                      <h1>{getSelectedLocationPath()}</h1>
+                    </div>
+                    <div className="row h-100 justify-content-center">
+                      <div className="col">
+                        {showRoomDetails ? (
+                          <RoomDetailsComponent
+                            onBack={hideMoreDetailsComponent}
+                            selectedRoom={selectedRoom}
+                            selectedLocationPath={getSelectedLocationPath()}
+                            teams={teams}
+                            setShowMemberDetails={setShowMemberDetails}
+                            showMemberDetails={showMemberDetails}
+                          />
+                        ) : (
+                          <h1>Pasirinkite kabinetą...</h1>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ) : (
                 <h1>Norėdami matyti šį puslapį, turite prisijungti</h1>
               )}

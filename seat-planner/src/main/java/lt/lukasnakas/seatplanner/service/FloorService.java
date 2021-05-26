@@ -62,7 +62,7 @@ public class FloorService implements Comparator<List<String>> {
 
     public List<OverviewFloor> findFloorsByOffice(String companyId, String officeId) {
         CONSOLE_LOGGER.info("Fetching floors in office ID: " + officeId);
-        return officeService.findOfficeById(companyId, officeId).getOverviewFloorList();
+        return officeService.findOfficeById(companyId, officeId).getOverviewFloorList().stream().sorted().collect(Collectors.toList());
     }
 
     public OverviewFloor findFloorById(String companyId, String officeId, String floorId) {

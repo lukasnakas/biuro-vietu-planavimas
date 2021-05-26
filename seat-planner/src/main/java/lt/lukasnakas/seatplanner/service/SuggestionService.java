@@ -1,6 +1,9 @@
 package lt.lukasnakas.seatplanner.service;
 
-import lt.lukasnakas.seatplanner.model.*;
+import lt.lukasnakas.seatplanner.model.DetailedSolution;
+import lt.lukasnakas.seatplanner.model.SolverTransfer;
+import lt.lukasnakas.seatplanner.model.Suggestion;
+import lt.lukasnakas.seatplanner.model.Transfer;
 import lt.lukasnakas.seatplanner.model.enumerators.State;
 import lt.lukasnakas.seatplanner.repository.SolverTransferRepository;
 import lt.lukasnakas.seatplanner.util.ComparatorUtil;
@@ -11,10 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -33,6 +33,19 @@ public class SuggestionService {
         this.teamService = teamService;
     }
 
+    public List<Suggestion> getConfirmedSuggestions(String companyId) {
+        List<Suggestion> allSuggestions = new ArrayList<>();
+        solverTransferRepository.findAll()
+                .stream()
+                .filter(solverTransfer -> solverTransfer.getId().equals(companyId))
+                .findFirst().orElseThrow()
+                .getSolverSuggestionsMap().values()
+                .forEach(allSuggestions::addAll);
+        return allSuggestions.stream()
+                .filter(suggestion -> suggestion.getState() == State.CONFIRMED)
+                .collect(Collectors.toList());
+    }
+
     public List<Suggestion> getSuggestions(String companyId) {
         List<Suggestion> allSuggestions = new ArrayList<>();
         solverTransferRepository.findAll()
@@ -41,9 +54,7 @@ public class SuggestionService {
                 .findFirst().orElseThrow()
                 .getSolverSuggestionsMap().values()
                     .forEach(allSuggestions::addAll);
-        return allSuggestions.stream()
-                .filter(suggestion -> suggestion.getState() == State.CONFIRMED)
-                .collect(Collectors.toList());
+        return allSuggestions;
     }
 
     public Suggestion getSuggestionById(String companyId, String id) {
@@ -57,6 +68,7 @@ public class SuggestionService {
         List<Suggestion> suggestions = getSuggestions(companyId);
         Suggestion suggestion = suggestions.stream().filter(s -> s.getId().equals(id)).findFirst().orElseThrow();
         suggestion.setState(State.CONFIRMED);
+        suggestion.setDate(new Date());
         Map<String, List<Suggestion>> solverSuggestionsMap = solverTransfer.getSolverSuggestionsMap();
         solverSuggestionsMap.put(correlationId, List.of(suggestion));
         solverTransfer.setSolverSuggestionsMap(solverSuggestionsMap);

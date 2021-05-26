@@ -40,7 +40,9 @@ const TeamDropdown = (props) => {
 
   return (
     <div
-      className={`w-100 dropdown ${dropdownMenuActive ? "open" : ""}`}
+      className={`w-100 dropdown ${dropdownMenuActive ? "open" : ""} ${
+        props.isDisabled ? "disabled" : ""
+      }`}
       ref={dropdownRef}
     >
       <button
@@ -53,7 +55,7 @@ const TeamDropdown = (props) => {
         aria-expanded="false"
         onClick={dropdownMenuOpen}
       >
-        {props.dropdownValue}
+        {props.dropdownValue === "no_team" ? "-" : props.dropdownValue}
       </button>
       <ul
         id="dropdown-team-menu-list"
@@ -64,17 +66,19 @@ const TeamDropdown = (props) => {
         aria-labelledby="dropdown-team-button"
       >
         {props.teams.length ? (
-          props.teams.map((team) => (
-            <li role="menuitem" key={team.id}>
-              <a
-                href="#"
-                id={"dropdown-basic-button-" + decorateTeamName(team.name)}
-                onClick={handleTeamSelect}
-              >
-                {decorateTeamName(team.name)}
-              </a>
-            </li>
-          ))
+          props.teams
+            .filter((team) => decorateTeamName(team.name) !== "no")
+            .map((team) => (
+              <li role="menuitem" key={team.id}>
+                <a
+                  href="#"
+                  id={"dropdown-basic-button-" + decorateTeamName(team.name)}
+                  onClick={handleTeamSelect}
+                >
+                  {decorateTeamName(team.name)}
+                </a>
+              </li>
+            ))
         ) : (
           <li role="menuitem" key="nodata">
             <a
